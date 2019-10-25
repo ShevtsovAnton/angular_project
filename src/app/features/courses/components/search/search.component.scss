@@ -1,0 +1,19 @@
+.search__container {
+    display: flex;
+    align-content: center;
+}
+
+.search__input {
+    outline: none;
+}
+
+.search__icon {
+    color: #5DBCD2;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: .2s ease-in;
+
+    &:hover {
+       color: rgb(73, 151, 168) 
+    }
+}

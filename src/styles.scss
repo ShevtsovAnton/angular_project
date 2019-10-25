@@ -1,6 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-$background_color: #eee;
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, 
+*:before, 
+*:after {
+box-sizing: inherit;
+}
 
 body {
-    background: $background_color;
+margin: 0;
+padding: 0;
+line-height: 1.618;
+font-family: Sintony-Regular, sans-serif;
+background: gray;
+height: 100%;
 }

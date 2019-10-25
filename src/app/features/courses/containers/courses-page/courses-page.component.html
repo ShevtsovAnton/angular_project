@@ -1,7 +1,17 @@
-<p>
-  courses-page works!
-</p>
-<app-header></app-header>
-<app-logo></app-logo>
-<app-breadcrumbs></app-breadcrumbs>
-<app-footer></app-footer>
+<div class="courses-page__container">
+  <app-header></app-header>
+  <div class="courses-page__content">
+      <div class="tools__container">
+          <app-breadcrumbs></app-breadcrumbs>
+          <div class="tools">
+              <app-search class="search"></app-search>
+              <app-add-course></app-add-course>
+          </div>
+      </div>
+      <app-courses-list
+          [coursesList]="coursesList"
+          (deleteCourse)="delete($event)">
+      </app-courses-list>
+  </div>
+  <app-footer class="footer__container"></app-footer>
+</div>

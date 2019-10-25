@@ -1,0 +1,28 @@
+.breadcrumbs__list {
+    color: #5DBCD2;
+    list-style: none;
+}
+
+.breadcrumbs__item {
+    display: inline-block;
+    margin-right: 10px;
+
+    &:not(:last-child)::after {
+        content: '';
+        border: solid #5DBCD2;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        margin-left: 5px;
+        padding: 3px;
+        transform: rotate(-45deg);
+    } 
+}
+
+.breadcrumbs__text {
+    cursor: pointer;
+    transition: .2s ease-in;
+
+    &:hover {
+        color: rgb(73, 151, 168) 
+    }
+}

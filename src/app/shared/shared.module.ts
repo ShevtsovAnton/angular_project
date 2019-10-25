@@ -11,9 +11,10 @@ import { LogoComponent } from './components/logo/logo.component';
     BreadcrumbsComponent,
     FooterComponent,
     HeaderComponent,
-    LogoComponent],
+    LogoComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     HeaderComponent,
