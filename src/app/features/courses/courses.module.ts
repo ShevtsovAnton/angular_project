@@ -17,7 +17,8 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
     CoursesItemComponent,
     AddCourseComponent,
     SearchComponent,
-    LoadMoreComponent],
+    LoadMoreComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
