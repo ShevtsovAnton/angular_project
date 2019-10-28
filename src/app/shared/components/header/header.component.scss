@@ -1,23 +1,22 @@
-.header__container {
+.header {
+    
+    &__container {
     display: flex;
     justify-content: space-between;
+    width: 1024px;
+    margin: auto;
     height: 70px;
-    padding: 0 50px;
     line-height: 70px;
-    background-color: white;
-}
+    }
 
-.header__logout {
-    padding: 5px 10px 5px 10px;
-    background-color: #5DBCD2;
-    border-radius: 10px;
-    color: white;
-    outline: none;
-    cursor: pointer;
+    &__user {
     transition: .2s ease-in;
-    margin-left: 20px;  
+    margin-left: 20px;
+    color: #feda6a;
+    text-decoration: none;
 
-    &:hover {
-        background-color:rgb(73, 151, 168) 
+        &:hover {
+        color: rgb(207, 177, 86);
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesItemModel } from '../../models/courses-item.model'
+import { CoursesItemModel } from '../../models/courses-item.model';
 
 @Component({
   selector: 'app-courses-page',
@@ -27,7 +27,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 8, 2),
         duration: '2h 32min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/reactjs.png'
+        imagePath: '../../../../assets/reactjs_new.png'
       },
       {
         id: 3,
@@ -43,7 +43,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 5, 30),
         duration: '54min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/git.jpg'
+        imagePath: '../../../../assets/git_new.png'
       },
       {
         id: 5,
@@ -59,7 +59,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 2, 2),
         duration: '2h 10min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/jquery.png'
+        imagePath: '../../../../assets/jquery_new.png'
       },
       {
         id: 7,
@@ -75,7 +75,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 4, 4),
         duration: '3h 34min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/expressjs.png'
+        imagePath: '../../../../assets/express_new.png'
       },
       {
         id: 9,
@@ -83,13 +83,13 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 5, 5),
         duration: '5h 55min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/nodejs.png'
+        imagePath: '../../../../assets/node_new.jpeg'
       }
-    ]
+    ];
   }
 
   delete(course) {
-    console.log(`Courses-Page: course ${course.title} with id ${course.id} must be deleted`)
+    console.log(`Courses-Page: course ${course.title} with id ${course.id} must be deleted`);
   }
 
 }

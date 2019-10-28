@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CoursesItemModel } from '../../models/courses-item.model'
+import { CoursesItemModel } from '../../models/courses-item.model';
 
 @Component({
   selector: 'app-courses-item',
@@ -11,7 +11,7 @@ export class CoursesItemComponent {
   @Input() course: CoursesItemModel;
   @Output() deleteCourse: EventEmitter<CoursesItemModel>;
 
-  constructor(){
+  constructor() {
     this.deleteCourse = new EventEmitter();
   }
 

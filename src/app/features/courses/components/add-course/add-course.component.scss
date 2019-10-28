@@ -1,32 +1,33 @@
 .add-course__button {
-    padding: 10px 15px 10px 25px;
-    background-color: #5DBCD2;
+    padding: 10px 20px 10px 30px;
+    background-color: #feda6a;
     border-radius: 15px;
-    color: white;
+    color: #1d1e22;
     position: relative;
     outline: none;
     cursor: pointer;
     transition: .2s ease-in;
-    top: -10px;
+    top: -5px;
+    font-size: 1em;
 
     &:hover {
-        background-color:rgb(73, 151, 168) 
+        background-color:rgb(207, 177, 86);
     }
 }
 
 .add-course__plus-icon {
     display: inline-block;
     position: absolute;
-    height: 12px;
-    width: 12px;
-    left: 9px;
+    height: 15px;
+    width: 15px;
+    left: 10px;
     top: 11px;
 
     &::before,
     &::after {
         content: "";
         position: absolute;
-        background-color: white;
+        background-color: #1d1e22;
     }
 
     &::before {

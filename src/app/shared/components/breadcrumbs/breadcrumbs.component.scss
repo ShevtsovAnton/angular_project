@@ -1,6 +1,7 @@
 .breadcrumbs__list {
-    color: #5DBCD2;
+    color: #feda6a;
     list-style: none;
+    padding: 0;
 }
 
 .breadcrumbs__item {
@@ -9,7 +10,7 @@
 
     &:not(:last-child)::after {
         content: '';
-        border: solid #5DBCD2;
+        border: solid #feda6a;
         border-width: 0 2px 2px 0;
         display: inline-block;
         margin-left: 5px;
@@ -23,6 +24,6 @@
     transition: .2s ease-in;
 
     &:hover {
-        color: rgb(73, 151, 168) 
+        color: rgb(207, 177, 86)
     }
 }

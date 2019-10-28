@@ -1,0 +1,15 @@
+.footer {
+    &__container {
+    height: 70px;
+    background-color: #1d1e22;
+    color: #feda6a;
+    }
+
+    &__content {
+        width: 1024px;
+        margin: auto;
+        text-align: right;
+        height: 100%;
+        line-height: 70px;
+    }
+}

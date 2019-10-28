@@ -4,16 +4,19 @@
 }
 
 .search__input {
+    padding: 5px;
     outline: none;
+    background: #f2f2f2;
 }
 
 .search__icon {
-    color: #5DBCD2;
+    color: #feda6a;
     margin-left: 10px;
     cursor: pointer;
+    font-size: 1.5em;
     transition: .2s ease-in;
 
     &:hover {
-       color: rgb(73, 151, 168) 
+       color: rgb(207, 177, 86)
     }
 }

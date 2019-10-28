@@ -8,6 +8,7 @@ import { CoursesItemComponent } from './components/courses-item/courses-item.com
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchComponent } from './components/search/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LoadMoreComponent } from './components/load-more/load-more.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CoursesListComponent,
     CoursesItemComponent,
     AddCourseComponent,
-    SearchComponent],
+    SearchComponent,
+    LoadMoreComponent],
   imports: [
     CommonModule,
     SharedModule,

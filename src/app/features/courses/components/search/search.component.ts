@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent {
 
-  searchQuery: string = '';
+  searchQuery = '';
 
   search() {
-    console.log(this.searchQuery)
+    console.log(this.searchQuery);
   }
 }
