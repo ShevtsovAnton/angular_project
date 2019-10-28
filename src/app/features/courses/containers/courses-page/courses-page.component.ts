@@ -9,7 +9,7 @@ import { CoursesItemModel } from '../../models/courses-item.model';
 
 export class CoursesPageComponent implements OnInit {
   coursesList: CoursesItemModel[];
-  constructor() { }
+  clickedTimes = 0;
 
   ngOnInit() {
     this.coursesList = [
@@ -19,7 +19,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 6, 1),
         duration: '3h 34min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/angular.png'
+        imagePath: '../../../../assets/angular_new.png'
       },
       {
         id: 2,
@@ -27,7 +27,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 8, 2),
         duration: '2h 32min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/reactjs_new.png'
+        imagePath: '../../../../assets/reactjs.png'
       },
       {
         id: 3,
@@ -35,7 +35,7 @@ export class CoursesPageComponent implements OnInit {
         creationDate: +new Date(2019, 7, 24),
         duration: '3h 34min',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        imagePath: '../../../../assets/vue.jpg'
+        imagePath: '../../../../assets/vuejs.jpg'
       },
       {
         id: 4,
@@ -88,8 +88,7 @@ export class CoursesPageComponent implements OnInit {
     ];
   }
 
-  delete(course) {
-    console.log(`Courses-Page: course ${course.title} with id ${course.id} must be deleted`);
+  addOneCourse() {
+    this.clickedTimes += 1;
   }
-
 }

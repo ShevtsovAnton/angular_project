@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoursesModule } from './features/courses/courses.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { CoursesModule } from './features/courses/courses.module';
   ],
   imports: [
     BrowserModule,
-    CoursesModule
+    CoursesModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
