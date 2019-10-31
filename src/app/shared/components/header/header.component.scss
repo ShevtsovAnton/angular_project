@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss';
+
 .header {
     
     &__container {
@@ -12,11 +14,11 @@
     &__user {
     transition: .2s ease-in;
     margin-left: 20px;
-    color: #feda6a;
+    color: $golden;
     text-decoration: none;
 
         &:hover {
-        color: rgb(207, 177, 86);
+        color: $golden-dark;
         }
     }
 }

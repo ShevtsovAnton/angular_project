@@ -1,8 +1,10 @@
+@import '../../../../styles/variables.scss';
+
 .footer {
     &__container {
     height: 70px;
-    background-color: #1d1e22;
-    color: #feda6a;
+    background-color: $black-steel;
+    color: $golden;
     }
 
     &__content {

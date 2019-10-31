@@ -1,3 +1,5 @@
+@import '../../../../../styles/variables.scss';
+
 .search__container {
     display: flex;
     align-content: center;
@@ -6,17 +8,17 @@
 .search__input {
     padding: 5px;
     outline: none;
-    background: #f2f2f2;
+    background: $light-gray;
 }
 
 .search__icon {
-    color: #feda6a;
+    color: $golden;
     margin-left: 10px;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: $icon-font-size;
     transition: .2s ease-in;
 
     &:hover {
-       color: rgb(207, 177, 86)
+       color: $golden-dark;
     }
 }

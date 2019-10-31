@@ -9,13 +9,9 @@ import { CoursesItemModel } from '../../models/courses-item.model';
 export class CoursesItemComponent {
 
   @Input() course: CoursesItemModel;
-  @Output() deleteCourse: EventEmitter<CoursesItemModel>;
+  @Output() deleteCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
 
-  constructor() {
-    this.deleteCourse = new EventEmitter();
-  }
-
-  delete() {
+  delete(): void {
     this.deleteCourse.emit(this.course);
   }
 }
