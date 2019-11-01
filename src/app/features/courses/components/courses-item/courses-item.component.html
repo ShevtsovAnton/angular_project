@@ -1,3 +1,18 @@
-<p>
-  courses-item works!
-</p>
+<div class="course">
+  <div class="course__image-container">
+    <img class="course__image-item" src="{{course.imagePath}}" alt="course image">
+  </div>
+  <div class="course__body">
+    <h4 class="course__title">{{course.title}}</h4>
+    <span class="course__description">{{course.description}}</span>
+    <span class="course__startdate">Start: {{course.creationDate | date}}</span>
+    <span class="course__duration">{{course.duration }}</span>
+    <div class="course__buttons">
+        <button class="course__button course__button_edit">Edit</button>
+        <button class="course__button course__button_delet"
+          (click)=delete()>
+          Delete
+        </button>
+    </div>
+  </div>
+</div>

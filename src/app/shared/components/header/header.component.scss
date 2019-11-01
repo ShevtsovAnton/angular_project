@@ -1,0 +1,24 @@
+@import '../../../../styles/variables.scss';
+
+.header {
+    
+    &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 1024px;
+    margin: auto;
+    height: 70px;
+    line-height: 70px;
+    }
+
+    &__user {
+    transition: .2s ease-in;
+    margin-left: 20px;
+    color: $golden;
+    text-decoration: none;
+
+        &:hover {
+        color: $golden-dark;
+        }
+    }
+}

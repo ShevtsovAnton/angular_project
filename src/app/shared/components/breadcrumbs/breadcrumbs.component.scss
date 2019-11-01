@@ -1,0 +1,31 @@
+@import '../../../../styles/variables.scss';
+
+.breadcrumbs__list {
+    color: $golden;
+    list-style: none;
+    padding: 0;
+}
+
+.breadcrumbs__item {
+    display: inline-block;
+    margin-right: 10px;
+
+    &:not(:last-child)::after {
+        content: '';
+        border: solid $golden;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        margin-left: 5px;
+        padding: 3px;
+        transform: rotate(-45deg);
+    } 
+}
+
+.breadcrumbs__text {
+    cursor: pointer;
+    transition: .2s ease-in;
+
+    &:hover {
+        color: $golden-dark;
+    }
+}

@@ -1,3 +1,7 @@
-<p>
-  courses-list works!
-</p>
+<div class="courses">
+  <app-courses-item 
+      *ngFor="let course of coursesList" 
+      [course]="course"
+      (deleteCourse)="delete(course)"
+  ></app-courses-item>
+</div>

@@ -5,7 +5,8 @@ export class CoursesItem implements CoursesItemModel {
         public id = null,
         public title = '',
         public creationDate = null,
-        public duration = null,
+        public duration = '',
         public description = '',
+        public imagePath = ''
     ) {}
 }

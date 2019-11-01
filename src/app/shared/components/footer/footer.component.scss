@@ -1,0 +1,17 @@
+@import '../../../../styles/variables.scss';
+
+.footer {
+    &__container {
+    height: 70px;
+    background-color: $black-steel;
+    color: $golden;
+    }
+
+    &__content {
+        width: 1024px;
+        margin: auto;
+        text-align: right;
+        height: 100%;
+        line-height: 70px;
+    }
+}

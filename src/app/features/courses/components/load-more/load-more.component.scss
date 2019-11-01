@@ -1,0 +1,23 @@
+@import '../../../../../styles/variables.scss';
+
+.load-more  {
+    
+    &__container {
+    text-align: center;
+    }
+
+    &__button {
+        padding: 10px 20px;
+        background-color: $golden;
+        border-radius: 5px;
+        color: $black-steel;
+        margin-right: 15px;
+        outline: none;
+        cursor: pointer;
+        font-size: $button-font-size;
+
+        &:hover {
+            background-color:$golden-dark;
+        }
+    }
+}

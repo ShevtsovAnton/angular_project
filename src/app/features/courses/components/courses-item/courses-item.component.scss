@@ -1,0 +1,74 @@
+@import '../../../../../styles/variables.scss';
+
+.course {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 350px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    background: $light-gray;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    transform: scale(1);
+    transition: .2s ease-in-out;
+
+    &__image-container {
+        height: 50%;
+    }
+
+    &__image-item {
+        height: 175px;
+        width: 250px;
+    }
+
+    &__body {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px 10px;
+        box-sizing: border-box;
+    }
+
+    &__title {
+        margin: 0;
+    }
+
+    &__duration {
+        display: block;
+        padding: 2px 10px;
+        background-color: $golden;
+        color: $black-steel;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: $duration-font-size;
+        min-width: 70px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        transition: .2s ease-in-out;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__button {
+        padding: 5px 10px;
+        background-color: $golden;
+        border-radius: 5px;
+        color: $black-steel;
+        margin-right: 15px;
+        outline: none;
+        width: 60px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $golden-dark;
+        }
+    }
+}
