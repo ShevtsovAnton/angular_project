@@ -1,11 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-courses-page',
+  template: '<p>Mock Courses Page Component</p>'
+})
+class MockCoursesPageComponent {}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MockCoursesPageComponent
       ],
     }).compileComponents();
   }));
@@ -22,10 +30,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('courses-ng');
   });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to courses-ng!');
-  });
 });
