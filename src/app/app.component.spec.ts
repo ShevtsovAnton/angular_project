@@ -1,19 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-courses-page',
-  template: '<p>Mock Courses Page Component</p>'
-})
-class MockCoursesPageComponent {}
+import { CoursesPageMockComponent } from './features/courses/containers/courses-page/courses-page.component.mock';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        MockCoursesPageComponent
+        CoursesPageMockComponent
       ],
     }).compileComponents();
   }));
