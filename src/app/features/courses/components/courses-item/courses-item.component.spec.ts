@@ -70,11 +70,11 @@ describe('CoursesItemComponent, test using test-host tests', () => {
   beforeEach(() => {
     fixture  = TestBed.createComponent(CoursesListMockComponent);
     testHostComponent = fixture.componentInstance;
-    deleteButton = fixture.nativeElement.querySelector('.course__button_delete');
     fixture.detectChanges();
   });
 
   it('raises the deleteCourse event when clicked', () => {
+    deleteButton = fixture.nativeElement.querySelector('.course__button_delete');
     deleteButton.click();
     expect(testHostComponent.selectedCourse).toBe(testHostComponent.course);
   });

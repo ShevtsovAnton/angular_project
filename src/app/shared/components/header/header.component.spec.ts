@@ -1,14 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-logo',
-  template: '<p>Mock logo Component</p>'
-})
-
-class MockLogoComponent {}
+import { LogoMockComponent } from '../logo/logo.component.mock';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -18,7 +11,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         HeaderComponent,
-        MockLogoComponent
+        LogoMockComponent
        ]
     })
     .compileComponents();
