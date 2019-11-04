@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoursesListComponent } from './courses-list.component';
 import { CoursesItemMockComponent } from '../courses-item/courses-item.component.mock';
-import { ElementRef } from '@angular/core';
 import { CoursesItemModel } from '../../models/courses-item.model';
 
 const coursesListMock: CoursesItemModel[] = [
@@ -42,6 +41,10 @@ describe('CoursesListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have coursesList set', () => {
+    expect(component.coursesList).toBe(coursesListMock);
+  })
 
   it('should raise delete emit', () => {
     spyOn(component.deleteCourse, 'emit');
