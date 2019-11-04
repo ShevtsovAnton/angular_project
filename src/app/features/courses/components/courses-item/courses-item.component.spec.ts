@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoursesItemComponent } from './courses-item.component';
 import { CoursesItemModel } from '../../models/courses-item.model';
+import { CoursesListMockComponent } from '../courses-list/courses-list.component.mock';
 
 const courseMock: CoursesItemModel = {
     id: 2,
@@ -12,7 +13,16 @@ const courseMock: CoursesItemModel = {
     imagePath: ''
 };
 
-describe('CoursesItemComponent', () => {
+// test as class
+it('raises the deleteCourse event when delete is triggered', () => {
+  const component = new CoursesItemComponent();
+  component.course = courseMock;
+  component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
+  component.delete();
+});
+
+// Use Stand Alone testing
+describe('CoursesItemComponent, test using stand-alone testing', () => {
   let component: CoursesItemComponent;
   let fixture: ComponentFixture<CoursesItemComponent>;
   let hostElement: HTMLElement;
@@ -38,8 +48,34 @@ describe('CoursesItemComponent', () => {
   });
 
   it('raises the deleteCourse event when clicked', () => {
-    component.deleteCourse.subscribe(selectedCourse => expect(selectedCourse).toBe(component.course));
+    component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
     deleteButton = hostElement.querySelector('.course__button_delete');
     deleteButton.click();
+  });
+});
+
+// use test-host tests
+describe('CoursesItemComponent, test using test-host tests', () => {
+  let testHostComponent: CoursesListMockComponent;
+  let fixture: ComponentFixture<CoursesListMockComponent>;
+  let deleteButton: HTMLButtonElement;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ CoursesItemComponent, CoursesListMockComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture  = TestBed.createComponent(CoursesListMockComponent);
+    testHostComponent = fixture.componentInstance;
+    deleteButton = fixture.nativeElement.querySelector('.course__button_delete');
+    fixture.detectChanges();
+  });
+
+  it('raises the deleteCourse event when clicked', () => {
+    deleteButton.click();
+    expect(testHostComponent.selectedCourse).toBe(testHostComponent.course);
   });
 });

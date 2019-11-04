@@ -34,5 +34,5 @@ describe('SearchComponent', () => {
     searchButton.dispatchEvent(new Event('click'));
     fixture.detectChanges();
     expect(window.console.log).toHaveBeenCalled();
-});
+  });
 });

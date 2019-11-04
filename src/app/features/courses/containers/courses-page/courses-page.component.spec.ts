@@ -8,6 +8,7 @@ import { FooterMockComponent } from 'src/app/shared/components/footer/footer.com
 import { CoursesListMockComponent } from '../../components/courses-list/courses-list.component.mock';
 import { AddCourseMockComponent } from '../../components/add-course/add-course.component.mock';
 import { SearchMockComponent } from '../../components/search/search.component.mock';
+import { CoursesItemMockComponent } from '../../components/courses-item/courses-item.component.mock';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -23,7 +24,8 @@ describe('CoursesPageComponent', () => {
         FooterMockComponent,
         CoursesListMockComponent,
         AddCourseMockComponent,
-        SearchMockComponent
+        SearchMockComponent,
+        CoursesItemMockComponent
       ]
     })
     .compileComponents();
