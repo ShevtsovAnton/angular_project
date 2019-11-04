@@ -44,7 +44,7 @@ describe('CoursesListComponent', () => {
 
   it('should have coursesList set', () => {
     expect(component.coursesList).toBe(coursesListMock);
-  })
+  });
 
   it('should raise delete emit', () => {
     spyOn(component.deleteCourse, 'emit');
