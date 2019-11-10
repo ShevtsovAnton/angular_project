@@ -1,4 +1,9 @@
 <div class="search__container">
-  <input [(ngModel)]="searchQuery" type="text" class="search__input">
+  <input 
+    [(ngModel)]="searchQuery" 
+    type="text" 
+    class="search__input"
+    (keypress)="search($event)"
+    >
   <i class="search__icon fa fa-search" (click)="search($event)"></i>
 </div>

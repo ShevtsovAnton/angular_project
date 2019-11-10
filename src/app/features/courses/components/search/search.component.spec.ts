@@ -6,8 +6,7 @@ import { FormsModule } from '@angular/forms';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  let hostElement: HTMLElement;
-  let searchButton: HTMLElement;
+  let eventMock: {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,12 +26,26 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should log message to console', () => {
-    spyOn(window.console, 'log');
-    hostElement = fixture.nativeElement;
-    searchButton = hostElement.querySelector('i');
-    searchButton.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(window.console.log).toHaveBeenCalled();
+  it('should raise  search makeSearchQuery on "enter" key', () => {
+    component.searchQuery = 'test';
+    component.makeSearchQuery.subscribe(inputValue => {
+      expect(inputValue).toBe('test');
+    });
+    eventMock = {key: 'Enter'};
+    component.search(eventMock);
+  });
+
+  it('should clear input field', () => {
+    component.searchQuery = 'test';
+    eventMock = {type: 'click'};
+    component.search(eventMock);
+    expect(component.searchQuery).toBe('');
+  });
+
+  it('should not clear input field', () => {
+    component.searchQuery = 'test';
+    eventMock = {type: 'Escape'};
+    component.search(eventMock);
+    expect(component.searchQuery).toBe('test');
   });
 });

@@ -15,9 +15,10 @@ export class CoursesListMockComponent {
     id: 2,
     title: 'React',
     creationDate: +new Date(2019, 8, 2),
-    duration: '2h 32min',
+    duration: 110,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    imagePath: ''
+    imagePath: '',
+    topRated: false
   };
   @Input() coursesList: CoursesItemModel[] = [];
   selectedCourse: CoursesItemModel;

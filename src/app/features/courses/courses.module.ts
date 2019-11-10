@@ -9,6 +9,9 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { SearchComponent } from './components/search/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
+import { HighlightCourseDirective } from './directives/highlight-course.directive';
+import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
     CoursesItemComponent,
     AddCourseComponent,
     SearchComponent,
-    LoadMoreComponent
+    LoadMoreComponent,
+    HighlightCourseDirective,
+    MinutesToHoursPipe,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
