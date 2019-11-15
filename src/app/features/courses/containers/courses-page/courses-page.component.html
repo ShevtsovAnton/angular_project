@@ -11,13 +11,18 @@
           </div>
       </div>
       <app-courses-list
-          [coursesList]="filteredCoursesList | orderBy"
-          (deleteCourse)="delete($event)">
+          [coursesList]="coursesList | orderBy"
+          (deleteCourse)="openModal($event)">
       </app-courses-list>
       <app-load-more></app-load-more>
-      <div *ngIf="filteredCoursesList.length === 0">
+      <div *ngIf="coursesList.length === 0">
         <span class="courses-page__no-data">{{noDataMessage | uppercase}}</span>
       </div>
   </div>
   <app-footer class="footer__container"></app-footer>
 </div>
+
+<app-confirmation-modal
+  *ngIf="isModalOpen"
+  (confirmAction)=handleModalResponse($event)
+></app-confirmation-modal>

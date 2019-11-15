@@ -5,13 +5,15 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
     FooterComponent,
     HeaderComponent,
-    LogoComponent
+    LogoComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { LogoComponent } from './components/logo/logo.component';
     HeaderComponent,
     BreadcrumbsComponent,
     LogoComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmationModalComponent
   ]
 })
 export class SharedModule { }
