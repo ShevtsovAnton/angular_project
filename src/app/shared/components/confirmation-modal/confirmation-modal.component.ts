@@ -20,7 +20,7 @@ export class ConfirmationModalComponent implements OnDestroy {
       this.confirmAction.emit(event);
       console.log(event);
   }
-  
+
   handleModalWindowClick(event: Event): void {
     event.stopPropagation();
   }
