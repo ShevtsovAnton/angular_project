@@ -25,15 +25,16 @@ const courseMock: CoursesItemModel = {
   topRated: true
 };
 
+const coursesServiceStub: Partial<CoursesService> = {
+  getList: () => coursesListMock,
+  remove: () => null
+};
+
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
   let fixture: ComponentFixture<CoursesPageComponent>;
   let hostElement: HTMLElement;
   let appSearchElement: HTMLElement;
-  const coursesServiceStub: Partial<CoursesService> = {
-    getList: () => coursesListMock,
-    remove: () => null
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -83,13 +84,14 @@ describe('CoursesPageComponent', () => {
   });
 
   it('should display all courses', () => {
-    component.coursesList = coursesListMock;
+    const coursesService = TestBed.get(CoursesService);
     component.coursesList = [];
     component.search(' ');
-    expect(component.coursesList.length).toBe(component.coursesList.length);
+    expect(component.coursesList.length).toBe(coursesService.getList().length);
   });
 
   it('should set isModalOpen to true', () => {
+    component.isModalOpen = false;
     fixture.detectChanges();
     component.openModal(courseMock);
     expect(component.isModalOpen).toEqual(true);
@@ -111,7 +113,6 @@ describe('CoursesPageComponent', () => {
 
   it('should call delete method after confirmation in modal window', () => {
     spyOn(component, 'delete');
-    spyOn(component, 'closeModal');
     component.handleModalResponse(true);
     expect(component.delete).toHaveBeenCalled();
   });

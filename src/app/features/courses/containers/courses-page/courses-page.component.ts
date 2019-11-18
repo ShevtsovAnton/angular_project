@@ -57,7 +57,7 @@ export class CoursesPageComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  handleModalResponse(event: boolean): void {
+  handleModalResponse(event: boolean) {
     if (event) {
       this.delete(this.courseToBeDeleted);
     }
