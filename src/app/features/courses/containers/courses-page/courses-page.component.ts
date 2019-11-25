@@ -103,7 +103,7 @@ export class CoursesPageComponent implements OnInit {
     this.filteredCoursesList = [...this.coursesList];
   }
 
-  private toLowerCase(item: string) {
+  private toLowerCase(item: string): string {
     return this.lowerCase.transform(item);
   }
 
