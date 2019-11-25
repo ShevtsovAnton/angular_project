@@ -16,6 +16,8 @@ export class SearchComponent {
   }
 
   handleKeypress(event: KeyboardEvent): void {
-    if (event.key === 'Enter') this.search();
+    if (event.key === 'Enter') {
+      this.search();
+    }
   }
 }

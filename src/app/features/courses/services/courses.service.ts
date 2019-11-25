@@ -97,11 +97,11 @@ export class CoursesService {
   }
 
   getCourse(id: number): CoursesItemModel {
-    return this.coursesList.filter( course => course.id === id)[0];
+    return this.coursesList.filter(course => course.id === id)[0];
   }
 
   updateCourse(updatedCourse: CoursesItemModel): void {
-    this.coursesList.map( (course, index) => {
+    this.coursesList.map((course, index) => {
       if (course.id === updatedCourse.id) {
         this.coursesList = [
           ...this.coursesList.slice(0, index),
@@ -112,14 +112,24 @@ export class CoursesService {
     });
   }
 
-  remove(courseToRemove: CoursesItemModel): void {
-    this.coursesList.map( (course, index) => {
-      if (course.id === courseToRemove.id) {
-        this.coursesList = [
-          ...this.coursesList.slice(0, index),
-          ...this.coursesList.slice(index + 1)
-        ];
+  updateCourse1(updatedCourse: CoursesItemModel): void {
+    this.coursesList = this.coursesList.reduce((allCourses, course) => {
+      if (course.id !== updatedCourse.id) {
+        allCourses.push(course);
+      } else {
+        allCourses.push(updatedCourse);
       }
-    });
+      return allCourses;
+    }, []);
+  }
+
+
+  remove(courseToRemove: CoursesItemModel): void {
+    this.coursesList = this.coursesList.reduce((allCourses, course) => {
+      if (course.id !== courseToRemove.id) {
+        allCourses.push(course);
+      }
+      return allCourses;
+    }, []);
   }
 }
