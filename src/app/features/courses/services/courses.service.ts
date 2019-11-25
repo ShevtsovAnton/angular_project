@@ -111,7 +111,6 @@ export class CoursesService {
     }, []);
   }
 
-
   remove(courseToRemove: CoursesItemModel): void {
     this.coursesList = this.coursesList.reduce((allCourses, course) => {
       if (course.id !== courseToRemove.id) {
