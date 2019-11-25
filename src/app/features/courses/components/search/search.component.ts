@@ -10,10 +10,12 @@ export class SearchComponent {
   @Output() makeSearchQuery: EventEmitter<string> = new EventEmitter();
   searchQuery = '';
 
-  search(event) {
-    if (event.type === 'click' || event.key === 'Enter') {
-      this.makeSearchQuery.emit(this.searchQuery);
-      this.searchQuery = '';
-    }
+  search(): void {
+    this.makeSearchQuery.emit(this.searchQuery);
+    this.searchQuery = '';
+  }
+
+  handleKeypress(event: KeyboardEvent): void {
+    if (event.key === 'Enter') this.search();
   }
 }

@@ -24,7 +24,7 @@ export class CoursesPageComponent implements OnInit {
     this.coursesList = this.coursesService.getList();
   }
 
-  private toLowerCase(item: string) {
+  private toLowerCase(item: string): string {
     return this.lowerCase.transform(item);
   }
 
