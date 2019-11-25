@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  let eventMock: {};
+  let keyPress: KeyboardEvent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,21 +31,20 @@ describe('SearchComponent', () => {
     component.makeSearchQuery.subscribe(inputValue => {
       expect(inputValue).toBe('test');
     });
-    eventMock = {key: 'Enter'};
-    component.search(eventMock);
+    keyPress = new KeyboardEvent('keypress', { key: 'Enter'});
+    component.handleKeypress(keyPress);
   });
 
   it('should clear input field', () => {
     component.searchQuery = 'test';
-    eventMock = {type: 'click'};
-    component.search(eventMock);
+    component.search();
     expect(component.searchQuery).toBe('');
   });
 
   it('should not clear input field', () => {
     component.searchQuery = 'test';
-    eventMock = {type: 'Escape'};
-    component.search(eventMock);
+    keyPress = new KeyboardEvent('keypress', { key: 'Escape'});
+    component.handleKeypress(keyPress);
     expect(component.searchQuery).toBe('test');
   });
 });
