@@ -32,8 +32,8 @@
         box-sizing: border-box;
     }
 
-    &__body.top-rated{
-        background-color: red;
+    &__body.top-rated {
+        background-color: $top-rated-course-color;
     }
 
     &__title {
