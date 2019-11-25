@@ -101,18 +101,6 @@ export class CoursesService {
   }
 
   updateCourse(updatedCourse: CoursesItemModel): void {
-    this.coursesList.map((course, index) => {
-      if (course.id === updatedCourse.id) {
-        this.coursesList = [
-          ...this.coursesList.slice(0, index),
-          updatedCourse,
-          ...this.coursesList.slice(index + 1)
-        ];
-      }
-    });
-  }
-
-  updateCourse1(updatedCourse: CoursesItemModel): void {
     this.coursesList = this.coursesList.reduce((allCourses, course) => {
       if (course.id !== updatedCourse.id) {
         allCourses.push(course);
