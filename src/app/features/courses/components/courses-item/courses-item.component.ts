@@ -11,8 +11,13 @@ export class CoursesItemComponent {
 
   @Input() course: CoursesItemModel;
   @Output() deleteCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
+  @Output() editCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
 
   delete(): void {
     this.deleteCourse.emit(this.course);
+  }
+
+  edit(): void {
+    this.editCourse.emit(this.course);
   }
 }

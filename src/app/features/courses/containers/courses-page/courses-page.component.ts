@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LowerCasePipe } from '@angular/common';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
+import { AddCourseService } from 'src/app/features/add-course/services/add-course.service';
 
 @Component({
   selector: 'app-courses-page',
@@ -18,6 +19,7 @@ export class CoursesPageComponent implements OnInit {
 
   constructor(private lowerCase: LowerCasePipe,
               private coursesService: CoursesService,
+              private addCourseService: AddCourseService
     ) {}
 
   ngOnInit() {
@@ -31,6 +33,10 @@ export class CoursesPageComponent implements OnInit {
   delete(course: CoursesItemModel): void {
     this.coursesService.remove(course);
     this.coursesList = this.coursesService.getList();
+  }
+
+  edit(): void {
+    this.addCourseService.openAddCoursePage();
   }
 
   search(searchQuery: string): void {

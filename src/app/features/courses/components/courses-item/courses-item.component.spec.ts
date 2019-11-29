@@ -4,7 +4,7 @@ import { CoursesItemComponent } from './courses-item.component';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesListMockComponent } from '../courses-list/courses-list.component.mock';
 import { HighlightCourseDirective } from '../../directives/highlight-course.directive';
-import { MinutesToHoursMockPipe } from '../../pipes/minutes-to-hours.pipe.mock';
+import { MinutesToHoursMockPipe } from '../../../../shared/pipes/minutes-to-hours.pipe.mock';
 
 const courseMock: CoursesItemModel = {
     id: 2,

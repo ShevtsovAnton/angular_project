@@ -17,7 +17,10 @@
     <span class="course__startdate">Start: {{course.creationDate | date}}</span>
     <span class="course__duration">{{course.duration | minutesToHours}}</span>
     <div class="course__buttons">
-        <button class="course__button course__button_edit">Edit</button>
+        <button class="course__button course__button_edit"
+          (click)="edit()">
+          Edit
+        </button>
         <button class="course__button course__button_delete"
           (click)=delete()>
           Delete

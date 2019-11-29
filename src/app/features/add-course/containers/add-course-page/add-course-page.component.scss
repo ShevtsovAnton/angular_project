@@ -1,0 +1,61 @@
+@import '../../../../../styles/variables.scss';
+
+.add-course-page__container {
+    width: 1024px;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-course {
+    &__content {
+        background-color: $black-steel;
+        flex: 1 0 auto;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }    
+}
+
+.add-form {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+        justify-content: center;
+        padding: 40px 20px;
+        background: $white-color;
+        border-radius: 5px;
+
+        & > * {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__button {
+        padding: 5px 10px;
+        background-color: $golden;
+        border-radius: 5px;
+        color: $black-steel;
+        margin-right: 15px;
+        margin-top: 20px;
+        outline: none;
+        width: 60px;
+        cursor: pointer;
+
+        &:hover {
+            background-color:$golden-dark;
+        }
+    }
+}
+
+#title, #description {
+    display: block;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+}
+    

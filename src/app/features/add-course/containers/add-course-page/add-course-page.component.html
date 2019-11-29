@@ -1,0 +1,23 @@
+<div class="add-course-page__container">
+  <div class="add-course__content">
+    <app-header></app-header>
+    <div class="add-form__container">
+      <label for="title">
+          Title:
+          <input type="text" name="title" id="title">
+        </label>
+        <label for="description">
+          Description:
+          <textarea type="text" name="description" id="description" rows="5"></textarea>
+        </label>
+        <app-date-input></app-date-input>
+        <app-duration-input></app-duration-input>
+        <app-authors-input></app-authors-input>
+        <div>
+          <button class="add-form__button" (click)="save()">Save</button>
+          <button class="add-form__button" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

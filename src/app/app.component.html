@@ -1,2 +1,3 @@
-<app-login-page *ngIf="!(isAuthenticated | async)"></app-login-page>
-<app-courses-page *ngIf="isAuthenticated | async"></app-courses-page>
+<app-login-page *ngIf="(!(isAuthenticated | async) && !(isAddCourseOpen | async))"></app-login-page>
+<app-courses-page *ngIf="(isAuthenticated | async) && !(isAddCourseOpen | async)"></app-courses-page>
+<app-add-course-page *ngIf="(isAddCourseOpen | async)" ></app-add-course-page>
