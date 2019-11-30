@@ -11,15 +11,15 @@ import { AddEditCourseService } from './features/add-edit-course/services/add-ed
 })
 export class AppComponent implements OnInit {
 
-  isAuthenticated: Observable<boolean>;
-  isAddCourseOpen: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
+  isAddEditCourseOpen$: Observable<boolean>;
 
   constructor(private authService: AuthorizationService,
               private addEditCourseService: AddEditCourseService,
               ) {}
 
   ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated();
-    this.isAddCourseOpen = this.addEditCourseService.isAddEditCourseOpen();
+    this.isAuthenticated$ = this.authService.isAuthenticated();
+    this.isAddEditCourseOpen$ = this.addEditCourseService.isAddEditCourseOpen();
   }
 }

@@ -9,10 +9,10 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  isAuthenticated: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
   constructor(private authService: AuthorizationService) {}
 
   ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAuthenticated$ = this.authService.isAuthenticated();
   }
 }

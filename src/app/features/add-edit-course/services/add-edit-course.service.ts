@@ -12,8 +12,6 @@ export class AddEditCourseService {
     return this.isAddEditCourseOpenSubject.asObservable();
    }
 
-  constructor() { }
-
   openAddEditCoursePage(): void {
     return this.isAddEditCourseOpenSubject.next(true);
   }
