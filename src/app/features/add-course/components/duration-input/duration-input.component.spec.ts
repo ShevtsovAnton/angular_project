@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DurationInputComponent } from './duration-input.component';
-import { FormsModule } from '@angular/forms';
 import { MinutesToHoursMockPipe } from 'src/app/shared/pipes/minutes-to-hours.pipe.mock';
 
 describe('DurationInputComponent', () => {

@@ -4,7 +4,6 @@ import { AddCoursePageComponent } from './add-course-page.component';
 import { HeaderMockComponent } from 'src/app/shared/components/header/header.component.mock';
 import { FooterMockComponent } from 'src/app/shared/components/footer/footer.component.mock';
 import { DurationInputMockComponent } from '../../components/duration-input/duration-input.component.mock';
-import { AuthorsInputComponent } from '../../components/authors-input/authors-input.component';
 import { AuthorsInputMockComponent } from '../../components/authors-input/authors-input.component.mock';
 import { DateInputMockComponent } from '../../components/date-input/date-input.component.mock';
 

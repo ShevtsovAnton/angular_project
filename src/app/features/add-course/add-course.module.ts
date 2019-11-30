@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AddCoursePageComponent } from './containers/add-course-page/add-course-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthorsInputComponent } from './components/authors-input/authors-input.component';
@@ -14,7 +13,6 @@ import { DateInputComponent } from './components/date-input/date-input.component
     DurationInputComponent
   ],
   imports: [
-    CommonModule,
     SharedModule
   ],
   exports: [

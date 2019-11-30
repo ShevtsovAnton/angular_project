@@ -29,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ConfirmationModalComponent,
     MinutesToHoursPipe,
-    FormsModule
+    FormsModule,
+    CommonModule
   ]
 })
 export class SharedModule { }

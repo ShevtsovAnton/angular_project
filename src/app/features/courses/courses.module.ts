@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { CoursesPageComponent } from './containers/courses-page/courses-page.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
@@ -24,7 +23,6 @@ import { CoursesService } from './services/courses.service';
     OrderByPipe
   ],
   imports: [
-    CommonModule,
     SharedModule
   ],
   providers: [
