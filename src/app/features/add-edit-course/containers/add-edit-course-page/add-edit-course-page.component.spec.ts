@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCoursePageComponent } from './add-course-page.component';
+import { AddEditCoursePageComponent } from './add-edit-course-page.component';
 import { HeaderMockComponent } from 'src/app/shared/components/header/header.component.mock';
 import { FooterMockComponent } from 'src/app/shared/components/footer/footer.component.mock';
 import { DurationInputMockComponent } from '../../components/duration-input/duration-input.component.mock';
@@ -8,13 +8,13 @@ import { AuthorsInputMockComponent } from '../../components/authors-input/author
 import { DateInputMockComponent } from '../../components/date-input/date-input.component.mock';
 
 describe('AddCoursePageComponent', () => {
-  let component: AddCoursePageComponent;
-  let fixture: ComponentFixture<AddCoursePageComponent>;
+  let component: AddEditCoursePageComponent;
+  let fixture: ComponentFixture<AddEditCoursePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AddCoursePageComponent,
+        AddEditCoursePageComponent,
         HeaderMockComponent,
         FooterMockComponent,
         DurationInputMockComponent,
@@ -26,7 +26,7 @@ describe('AddCoursePageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCoursePageComponent);
+    fixture = TestBed.createComponent(AddEditCoursePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { CoursesModule } from './features/courses/courses.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './features/login/login.module';
-import { AddCourseModule } from './features/add-course/add-course.module';
+import { AddCourseModule } from './features/add-edit-course/add-edit-course.module';
 
 registerLocaleData(localeUa, 'ru-Ua');
 
