@@ -2,8 +2,10 @@
   <app-logo></app-logo>
   <div class="header__login-info">
       <div class="header__user" *ngIf="isAuthenticated$ | async">
-          {{user?.firstName}}
-          {{user?.lastName}}
+          <span *ngIf="user">
+            {{user.firstName}}
+            {{user.lastName}}
+          </span>
           <button
               type="button" 
               class="header__logout"
