@@ -1,3 +1,3 @@
 <label for="duration" class="duration__label">Duration:</label>
-<input type="number" name="duration" class="duration__input" id="duration" [(ngModel)]="duration" value="500">
+<input type="number" name="duration" class="duration__input" id="duration" [(ngModel)]="duration">
 <span class="duration__minutes" *ngIf="duration">{{duration | minutesToHours}}</span>

@@ -7,7 +7,9 @@
               <app-search
                 class="search"
                 (makeSearchQuery)="search($event)"></app-search>
-              <app-add-course></app-add-course>
+              <app-add-course
+                (click)="addCourse()">
+              </app-add-course>
           </div>
       </div>
       <app-courses-list

@@ -5,6 +5,7 @@ import { HeaderMockComponent } from 'src/app/shared/components/header/header.com
 import { BreadcrumbsMockComponent } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component.mock';
 import { LoginMockComponent } from '../../components/login/login.component.mock';
 import { FooterMockComponent } from 'src/app/shared/components/footer/footer.component.mock';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -18,7 +19,8 @@ describe('LoginPageComponent', () => {
         BreadcrumbsMockComponent,
         LoginMockComponent,
         FooterMockComponent
-      ]
+      ],
+      imports: [ RouterTestingModule]
     })
     .compileComponents();
   }));

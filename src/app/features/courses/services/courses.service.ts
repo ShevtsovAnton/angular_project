@@ -109,6 +109,7 @@ export class CoursesService {
       }
       return allCourses;
     }, []);
+    console.log(this.coursesList);
   }
 
   remove(courseToRemove: CoursesItemModel): void {

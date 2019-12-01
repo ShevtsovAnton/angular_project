@@ -8,6 +8,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
 import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     LogoComponent,
     ConfirmationModalComponent,
-    MinutesToHoursPipe
+    MinutesToHoursPipe,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,
@@ -30,7 +34,9 @@ import { FormsModule } from '@angular/forms';
     ConfirmationModalComponent,
     MinutesToHoursPipe,
     FormsModule,
-    CommonModule
+    CommonModule,
+    PageNotFoundComponent,
+    RouterModule
   ]
 })
 export class SharedModule { }
