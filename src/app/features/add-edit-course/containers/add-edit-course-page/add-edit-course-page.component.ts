@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   course: CoursesItemModel;
-  courseTemporary: CoursesItemModel = {
+  fakeNewCourse: CoursesItemModel = {
     id: 9,
     title: 'New course',
     creationDate: +new Date(2019, 11, 31),
@@ -36,7 +36,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
         this.course = this.coursesService.getCourse(+params.id);
         this.isCourseNew = false;
       } else {
-        this.course = this.courseTemporary;
+        this.course = this.fakeNewCourse;
       }
     });
   }

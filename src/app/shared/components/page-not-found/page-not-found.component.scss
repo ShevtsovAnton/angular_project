@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('../../../../styles/variables.scss');
 
 .left-section .inner-content {
   position: absolute;
@@ -12,14 +13,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#0C0E10, #446182);
+  background: $nfp-backgound
 }
 .background .ground {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 25vh;
-  background: #0C0E10;
+  background: $nfp-ground;
 }
 @media (max-width: 770px) {
   .background .ground {
@@ -72,8 +73,8 @@
   line-height: 1.3em;
   margin: 2rem 0 0.5rem 0;
   padding: 0;
-  text-shadow: 0 0 1rem #fefefe;
-  color: white;
+  text-shadow: 0 0 1rem $white-shadow;
+  color: $white-color;
 }
 @media (max-width: 770px) {
   .heading {
@@ -90,7 +91,7 @@
   line-height: 1.15em;
   padding: 0 1rem;
   margin: 0 auto;
-  color: white;
+  color: $white-color;
 }
 @media (max-width: 770px) {
   .subheading {
@@ -126,37 +127,37 @@
   }
 }
 .svgimg .bench-legs {
-  fill: #0C0E10;
+  fill: $nfp-ground;
 }
 .svgimg .top-bench, .svgimg .bottom-bench {
-  stroke: #0C0E10;
+  stroke: $nfp-ground;
   stroke-width: 1px;
-  fill: #5B3E2B;
+  fill: $nfp-bench;
 }
 .svgimg .bottom-bench path:nth-child(1) {
-  fill: #432d20;
+  fill: $nfp-bottom-bench;
 }
 .svgimg .lamp-details {
-  fill: #202425;
+  fill: $nfp-lamp;
 }
 .svgimg .lamp-accent {
-  fill: #2c3133;
+  fill: $nfp-lamp-accent;
 }
 .svgimg .lamp-bottom {
-  fill: linear-gradient(#202425, #0C0E10);
+  fill: linear-gradient($nfp-lamp, $nfp-ground);
 }
 .svgimg .lamp-light {
-  fill: #EFEFEF;
+  fill: $white-shadow;
 }
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 1rem #fefefe;
+    text-shadow: 0 0 1rem $white-shadow;
   }
   50% {
-    text-shadow: 0 0 1.85rem #ededed;
+    text-shadow: 0 0 1.85rem $white-shadow-dark;
   }
   100% {
-    text-shadow: 0 0 1rem #fefefe;
+    text-shadow: 0 0 1rem $white-shadow;
   }
 }
