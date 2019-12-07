@@ -12,7 +12,8 @@ export class CoursesService {
       duration: 500,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/angular_new.png',
-      topRated: true
+      topRated: true,
+      authors: ''
     },
     {
       id: 2,
@@ -21,7 +22,8 @@ export class CoursesService {
       duration: 300,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/reactjs.png',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 3,
@@ -30,7 +32,8 @@ export class CoursesService {
       duration: 90,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/vuejs.jpg',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 4,
@@ -39,7 +42,8 @@ export class CoursesService {
       duration: 54,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/git_new.png',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 5,
@@ -48,7 +52,8 @@ export class CoursesService {
       duration: 200,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/javascript.png',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 6,
@@ -57,7 +62,8 @@ export class CoursesService {
       duration: 100,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/jquery_new.png',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 7,
@@ -66,7 +72,8 @@ export class CoursesService {
       duration: 333,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/ember.jpg',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 8,
@@ -75,7 +82,8 @@ export class CoursesService {
       duration: 123,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/express_new.png',
-      topRated: false
+      topRated: false,
+      authors: ''
     },
     {
       id: 9,
@@ -84,7 +92,8 @@ export class CoursesService {
       duration: 950,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       imagePath: '../../../../assets/node_new.jpeg',
-      topRated: false
+      topRated: false,
+      authors: ''
     }
   ];
 

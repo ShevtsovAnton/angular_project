@@ -18,7 +18,8 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     duration: 456,
     description: 'This is a new course',
     imagePath: 'assets/angular_new.png',
-    topRated: false
+    topRated: false,
+    authors: ''
   };
   isCourseNew = true;
 
