@@ -8,6 +8,7 @@ export class CoursesItem implements CoursesItemModel {
         public duration = null,
         public description = '',
         public imagePath = '',
-        public topRated = false
+        public topRated = false,
+        public authors = ''
     ) {}
 }

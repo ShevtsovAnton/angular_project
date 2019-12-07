@@ -6,4 +6,5 @@ export interface CoursesItemModel {
     description: string;
     imagePath: string;
     topRated: boolean;
+    authors: string;
 }
