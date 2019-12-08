@@ -1,10 +1,9 @@
 <div class="header__container">
   <app-logo></app-logo>
   <div class="header__login-info">
-      <div class="header__user" *ngIf="isAuthenticated$ | async">
-          <span *ngIf="user">
-            {{user.firstName}}
-            {{user.lastName}}
+      <div class="header__user" *ngIf="userInfo">
+          <span>
+            {{userInfo}}
           </span>
           <button
               type="button" 

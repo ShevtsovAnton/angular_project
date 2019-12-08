@@ -10,11 +10,11 @@ import { CoursesItemModel } from '../../models/courses-item.model';
 export class CoursesItemComponent {
 
   @Input() course: CoursesItemModel;
-  @Output() deleteCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
+  @Output() deleteCourse: EventEmitter<number> = new EventEmitter();
   @Output() editCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
 
   delete(): void {
-    this.deleteCourse.emit(this.course);
+    this.deleteCourse.emit(this.course.id);
   }
 
   edit(): void {

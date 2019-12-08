@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserModel } from 'src/app/features/login/models/user.model';
 import { AuthorizationService } from 'src/app/features/login/services/authorization.service';
 
 
@@ -11,17 +10,15 @@ import { AuthorizationService } from 'src/app/features/login/services/authorizat
 })
 export class HeaderComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
-  user: UserModel;
+  userInfo = '';
 
   constructor(private authService: AuthorizationService) {}
 
-  ngOnInit() {
-    this.user = {id: 1, firstName: 'Tom', lastName: 'Smith'};
-    this.isAuthenticated$ = this.authService.isAuthenticated();
+  ngOnInit(): void {
+    this.userInfo = this.authService.getUserInfo();
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
-    this.user = null;
   }
 }

@@ -1,3 +1,5 @@
+import { AuthorModel } from './author.model';
+
 export interface CoursesItemModel {
     id: number;
     title: string;
@@ -6,5 +8,5 @@ export interface CoursesItemModel {
     description: string;
     imagePath: string;
     topRated: boolean;
-    authors: string;
+    authors: AuthorModel[];
 }

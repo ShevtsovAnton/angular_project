@@ -3,7 +3,8 @@
     [(ngModel)]="searchQuery" 
     type="text" 
     class="search__input"
-    (keypress)="handleKeypress($event)"
+    (keyup.enter)="search()"
     >
   <i class="search__icon fa fa-search" (click)="search()"></i>
 </div>
+

@@ -8,6 +8,7 @@ import {
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
+// tslint:disable-next-line
 @Component({selector: 'router-outlet', template: ''})
 class RouterOutletStubComponent { }
 

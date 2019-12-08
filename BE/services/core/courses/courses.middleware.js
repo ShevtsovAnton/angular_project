@@ -17,7 +17,7 @@ module.exports = (server) => {
 			courses = server.db.getState().courses;
 
 		if (!!query.textFragment) {
-			courses = courses.filter((course) => course.name.concat(course.description).toUpperCase().indexOf(query.textFragment.toUpperCase()) >= 0);
+			courses = courses.filter((course) => course.title.concat(course.description).toUpperCase().indexOf(query.textFragment.toUpperCase()) >= 0);
 		}
 
 		if(sort) {

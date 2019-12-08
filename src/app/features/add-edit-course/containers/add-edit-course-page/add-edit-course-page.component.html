@@ -5,15 +5,21 @@
     <div class="add-form__container">
       <label for="title">
           Title:
-          <input type="text" name="title" id="title" value="{{course.title}}">
+          <input [(ngModel)]="course.title" type="text" name="title" id="title" value="{{course.title}}">
         </label>
         <label for="description">
           Description:
-          <textarea type="text" name="description" id="description" rows="5">{{course.description}}</textarea>
+          <textarea type="text"
+                    name="description" 
+                    id="description" 
+                    rows="5"
+                    [(ngModel)]="course.description">{{course.description}}
+          </textarea>
         </label>
-        <app-date-input [creationDate]="course.creationDate"></app-date-input>
-        <app-duration-input [duration]="course.duration"></app-duration-input>
-        <app-authors-input [authors]="course.authors"></app-authors-input>
+        <app-date-input 
+          [(creationDate)]="course.creationDate"></app-date-input>
+        <app-duration-input [(duration)]="course.duration"></app-duration-input>
+        <app-authors-input [(authors)]="course.authors[0].name"></app-authors-input>
         <div>
           <button class="add-form__button" (click)="save()">Save</button>
           <button class="add-form__button" (click)="cancel()">Cancel</button>

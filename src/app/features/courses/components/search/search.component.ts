@@ -14,10 +14,4 @@ export class SearchComponent {
     this.makeSearchQuery.emit(this.searchQuery);
     this.searchQuery = '';
   }
-
-  handleKeypress(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      this.search();
-    }
-  }
 }

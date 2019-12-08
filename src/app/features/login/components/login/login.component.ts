@@ -12,12 +12,11 @@ export class LoginComponent {
 
   onSubmit(username: HTMLInputElement, password: HTMLInputElement): void {
     if (username.value && password.value) {
-      this.authService.login(username.value);
-      console.log(`username: ${username.value}, password: ${password.value}`);
+      this.authService.login(username.value, password.value);
       username.value = '';
       password.value = '';
     } else {
-      console.log('Please fill in the login and password fields');
+      alert('Please fill in the login and password fields');
     }
   }
 

@@ -1,61 +1,74 @@
-import { Component, OnInit } from '@angular/core';
-import { LowerCasePipe } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
-  styleUrls: ['./courses-page.component.scss'],
-  providers: [LowerCasePipe]
+  styleUrls: ['./courses-page.component.scss']
 })
 
-export class CoursesPageComponent implements OnInit {
-  coursesList: CoursesItemModel[];
+export class CoursesPageComponent implements OnInit, OnDestroy {
   noDataMessage = 'No Data, feel free to add new course';
-  isModalOpen: boolean;
-  courseToBeDeleted: CoursesItemModel;
+  isModalOpen = false;
+  idToDelete: string;
+  numberOfCourses: number;
+  coursesPerPage = 9;
+  page = 1;
+  searchQuery = '';
+  courses: CoursesItemModel[] = [];
+  allCoursesDisplayed = false;
+  private destroy$ = new Subject();
 
-  constructor(private lowerCase: LowerCasePipe,
-              private coursesService: CoursesService,
-              private router: Router
-    ) {}
+  constructor(
+    private coursesService: CoursesService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
-    this.coursesList = this.coursesService.getList();
+  ngOnInit(): void {
+    this.coursesService.getList(this.page - 1, this.coursesPerPage)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(coursesList => {
+        this.courses = coursesList;
+      });
   }
 
-  private toLowerCase(item: string): string {
-    return this.lowerCase.transform(item);
-  }
-
-  delete(course: CoursesItemModel): void {
-    this.coursesService.remove(course);
-    this.coursesList = this.coursesService.getList();
+  delete(id: string): void {
+    this.coursesService.remove(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => {
+        if (this.page !== 1 && this.courses.length === 1) {
+          this.page -= 1;
+        }
+        this.numberOfCourses -= 1;
+        this.coursesService.getList(this.page - 1, this.coursesPerPage)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(courses => {
+            this.courses = courses;
+          });
+      });
   }
 
   edit(course: CoursesItemModel): void {
     this.router.navigate(['/courses', course.id]);
   }
 
-  search(searchQuery: string): void {
-    const requestedTitle = this.toLowerCase(searchQuery.trim());
-    if (!requestedTitle) {
-      this.coursesList = this.coursesService.getList();
-      return;
-    }
+  search(textFragment: string): void {
+    this.searchQuery = textFragment;
 
-    const filteredList = this.coursesList.filter( course => {
-      const title = this.toLowerCase(course.title.trim());
-      return title.indexOf(requestedTitle) !== -1;
-    });
-
-    this.coursesList = [...filteredList];
+    this.coursesService.getList(0, this.coursesPerPage, textFragment)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(coursesInfo => {
+        this.courses = coursesInfo;
+        this.numberOfCourses = coursesInfo.length;
+      });
   }
 
-  openModal(course: CoursesItemModel): void {
-    this.courseToBeDeleted = course;
+  openModal(id: string): void {
+    this.idToDelete = id;
     this.isModalOpen = true;
   }
 
@@ -65,12 +78,30 @@ export class CoursesPageComponent implements OnInit {
 
   handleModalResponse(event: boolean) {
     if (event) {
-      this.delete(this.courseToBeDeleted);
+      this.delete(this.idToDelete);
     }
     this.closeModal();
   }
 
   addCourse(): void {
     this.router.navigate(['courses', 'new']);
+  }
+
+  loadMore(): void {
+    this.page += 1;
+    this.coursesService.getList(this.page - 1, this.coursesPerPage)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(courses => {
+        if (courses.length < this.coursesPerPage) {
+          this.allCoursesDisplayed = true;
+          return;
+        }
+        this.courses = [...this.courses, ...courses];
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

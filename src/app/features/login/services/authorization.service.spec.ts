@@ -5,7 +5,7 @@ describe('AuthorizationService', () => {
   const router = jasmine.createSpyObj('Router', ['navigate']);
   let service: AuthorizationService;
   beforeEach(() => {
-    service = new AuthorizationService(router);
+    service = new AuthorizationService(router, null);
     spyOn(localStorage, 'getItem')
       .and.callFake(mockLocalStorage.getItem);
     spyOn(localStorage, 'setItem')
@@ -18,7 +18,7 @@ describe('AuthorizationService', () => {
 
   it('should login', () => {
     spyOn(service.isLoggedInSubject, 'next');
-    service.login('username');
+    service.login({ login: 'username' });
     expect(service.isLoggedInSubject.next).toHaveBeenCalledWith(true);
   });
 
@@ -34,7 +34,7 @@ describe('AuthorizationService', () => {
   });
 
   it('should get user info from local storage', () => {
-    service.login('username');
+    service.login({ login: 'username' });
     const userInfo = service.getUserInfo();
     expect(userInfo).toBe('username');
   });
