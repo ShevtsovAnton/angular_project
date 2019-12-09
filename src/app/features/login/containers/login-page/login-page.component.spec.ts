@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { LoginPageComponent } from './login-page.component';
 import { HeaderMockComponent } from 'src/app/shared/components/header/header.component.mock';
 import { BreadcrumbsMockComponent } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component.mock';
 import { LoginMockComponent } from '../../components/login/login.component.mock';
 import { FooterMockComponent } from 'src/app/shared/components/footer/footer.component.mock';
-import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -20,7 +22,10 @@ describe('LoginPageComponent', () => {
         LoginMockComponent,
         FooterMockComponent
       ],
-      imports: [ RouterTestingModule]
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));

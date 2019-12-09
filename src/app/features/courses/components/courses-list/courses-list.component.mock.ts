@@ -18,7 +18,8 @@ export class CoursesListMockComponent {
     duration: 110,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: []
   };
   @Input() coursesList: CoursesItemModel[] = [];
   selectedCourse: CoursesItemModel;

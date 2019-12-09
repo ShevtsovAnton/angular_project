@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CoursesService } from './courses.service';
 import { CoursesItemModel } from '../models/courses-item.model';
 import { coursesListMock } from '../containers/courses-page/courses-list.mock';
+
 
 
 const courseMock: CoursesItemModel = {
@@ -12,7 +14,8 @@ const courseMock: CoursesItemModel = {
   duration: 32,
   description: 'angular course',
   topRated: false,
-  imagePath: '../../../../assets/img/1.jpg'
+  imagePath: '../../../../assets/img/1.jpg',
+  authors: []
 };
 
 let service: CoursesService;
@@ -20,7 +23,8 @@ let service: CoursesService;
 describe('CoursesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CoursesService]
+      providers: [CoursesService],
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.get(CoursesService);
     service.coursesList = coursesListMock;

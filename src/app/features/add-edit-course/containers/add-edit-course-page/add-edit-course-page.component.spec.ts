@@ -10,6 +10,7 @@ import { BreadcrumbsMockComponent } from 'src/app/shared/components/breadcrumbs/
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const coursesServiceStub: Partial<CoursesService> = {
   createCourse: () => null,
@@ -32,7 +33,8 @@ describe('AddCoursePageComponent', () => {
         BreadcrumbsMockComponent
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       providers: [
         { provide: CoursesService, useValue: coursesServiceStub }
