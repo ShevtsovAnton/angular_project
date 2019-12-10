@@ -18,10 +18,10 @@ const courseMock: CoursesItemModel = {
 };
 
 // test as class
-it('raises the deleteCourse event when delete is triggered', () => {
+it('CoursesItemComponent, raises the deleteCourse event when delete is triggered', () => {
   const component = new CoursesItemComponent();
   component.course = courseMock;
-  component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
+  component.deleteCourse.subscribe((id: number) => expect(id).toBe(component.course.id));
   component.delete();
 });
 
@@ -56,7 +56,7 @@ describe('CoursesItemComponent, test using stand-alone testing', () => {
   });
 
   it('raises the deleteCourse event when clicked', () => {
-    component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
+    component.deleteCourse.subscribe((id: number) => expect(id).toBe(component.course.id));
     deleteButton = hostElement.querySelector('.course__button_delete');
     deleteButton.click();
   });
@@ -89,6 +89,6 @@ describe('CoursesItemComponent, test using test-host tests', () => {
   it('raises the deleteCourse event when clicked', () => {
     deleteButton = fixture.nativeElement.querySelector('.course__button_delete');
     deleteButton.click();
-    expect(testHostComponent.selectedCourse).toBe(testHostComponent.course);
+    expect(testHostComponent.selectedCourse.id).toBe(testHostComponent.course.id);
   });
 });

@@ -2,11 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let keyPress: KeyboardEvent;
+  let searchInput: HTMLInputElement
+  let debugElement: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,8 +35,9 @@ describe('SearchComponent', () => {
     component.makeSearchQuery.subscribe(inputValue => {
       expect(inputValue).toBe('test');
     });
-    keyPress = new KeyboardEvent('keypress', { key: 'Enter'});
-    component.handleKeypress(keyPress);
+    debugElement = fixture.debugElement;
+    searchInput = debugElement.query(By.css('.search__input')).nativeElement;
+    searchInput.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter'}));
   });
 
   it('should clear input field', () => {
@@ -43,8 +48,9 @@ describe('SearchComponent', () => {
 
   it('should not clear input field', () => {
     component.searchQuery = 'test';
-    keyPress = new KeyboardEvent('keypress', { key: 'Escape'});
-    component.handleKeypress(keyPress);
+    debugElement = fixture.debugElement;
+    searchInput = debugElement.query(By.css('.search__input')).nativeElement;
+    searchInput.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape'}));
     expect(component.searchQuery).toBe('test');
   });
 });
