@@ -25,7 +25,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     }]
   };
   isCourseNew = true;
-  routeSubscription: Subscription;
   private destroy$ = new Subject();
 
   constructor(
