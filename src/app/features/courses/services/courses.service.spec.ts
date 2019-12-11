@@ -39,7 +39,7 @@ describe('CoursesService', () => {
 
   it('createCourse() should call http post with course', () => {
     service.createCourse(courseMock).subscribe((data) => {
-        expect(data).toEqual(courseMock)
+        expect(data).toEqual(courseMock);
       });
     const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }`);
     expect(req.request.method).toEqual('POST');
@@ -51,7 +51,7 @@ describe('CoursesService', () => {
   it('getCourse() should call http get with id', () => {
     const courseId = 1;
     service.getCourse(courseId).subscribe((data) => {
-        expect(data).toEqual(courseMock)
+        expect(data).toEqual(courseMock);
       });
     const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }/${courseId}`);
     expect(req.request.method).toEqual('GET');
@@ -59,9 +59,32 @@ describe('CoursesService', () => {
     httpMock.verify();
   });
 
-  it('updateCourse() call http patch with course  ', () => {
+  it('getList() should call http GET with parameters', () => {
+    const start = 0;
+    const count = 3;
+    const textFragment = 'angular';
+    service.getList(start, count, textFragment).subscribe((courses) => null);
+    const url = `${ BASE_URL }${ COURSES_PATH }?start=${start}&count=${count}&textFragment=${textFragment}`;
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toEqual('GET');
+    req.flush(coursesListMock);
+    httpMock.verify();
+  });
+
+  it('getList() should call http GET with parameters, no textFragment', () => {
+    const start = 0;
+    const count = 3;
+    service.getList(start, count).subscribe((courses) => null);
+    const url = `${ BASE_URL }${ COURSES_PATH }?start=${start}&count=${count}&textFragment=`;
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toEqual('GET');
+    req.flush(coursesListMock);
+    httpMock.verify();
+  });
+
+  it('updateCourse() should call http PATCH with course', () => {
     service.updateCourse(courseMock).subscribe((data) => {
-        expect(data).toEqual(courseMock)
+        expect(data).toEqual(courseMock);
       });
     const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }`);
     expect(req.request.method).toEqual('PATCH');
@@ -72,7 +95,7 @@ describe('CoursesService', () => {
   it('remove() call http delete with id  ', () => {
     const courseId = '1';
     service.remove(courseId).subscribe((data) => {
-        expect(data).toEqual(courseMock)
+        expect(data).toEqual(courseMock);
       });
     const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }/${courseId}`);
     expect(req.request.method).toEqual('DELETE');

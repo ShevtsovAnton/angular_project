@@ -31,7 +31,7 @@ const courseMock: CoursesItemModel = {
 
 const coursesServiceStub: Partial<CoursesService> = {
   getList: () => of(coursesListMock),
-  remove: () => null
+  remove: () => of(courseMock.id)
 };
 
 describe('CoursesPageComponent', () => {
@@ -69,7 +69,6 @@ describe('CoursesPageComponent', () => {
     fixture = TestBed.createComponent(CoursesPageComponent);
     component = fixture.componentInstance;
     component.courses = coursesListMock;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -84,59 +83,57 @@ describe('CoursesPageComponent', () => {
     expect(component.search).toHaveBeenCalled();
   });
 
+  it('should set isModalOpen to true', () => {
+    component.isModalOpen = false;
+    component.openModal('1');
+    fixture.detectChanges();
+    expect(component.isModalOpen).toEqual(true);
+  });
+
+  it('should set isModalOpen to false', () => {
+    component.isModalOpen = true;
+    component.closeModal();
+    expect(component.isModalOpen).toEqual(false);
+  });
+
+  it('should call remove method on service', () => {
+    const coursesService = TestBed.get(CoursesService);
+    spyOn(coursesService, 'remove').and.returnValue(of(null));
+    component.delete((courseMock.id).toString());
+    expect(coursesService.remove).toHaveBeenCalled();
+  });
+
+  it('should call delete method after confirmation in modal window', () => {
+    spyOn(component, 'delete');
+    component.handleModalResponse(true);
+    expect(component.delete).toHaveBeenCalled();
+  });
+
+  it('should not call delete method after cancel is clicked', () => {
+    spyOn(component, 'delete');
+    component.handleModalResponse(false);
+    expect(component.delete).not.toHaveBeenCalled();
+  });
+
+  it('should navigate to courses/new page', () => {
+    const router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    component.addCourse();
+    expect(router.navigate).toHaveBeenCalledWith(['courses', 'new']);
+  });
+
+  it('should navigate to course:id page', () => {
+    const router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    component.edit(courseMock);
+    expect(router.navigate).toHaveBeenCalledWith(['/courses', courseMock.id]);
+  });
+
   it('should call service method with search query', () => {
     const coursesService = TestBed.get(CoursesService);
-    spyOn(coursesService, 'getList').and.returnValue(of(null));
-    component.courses = coursesListMock;
+    spyOn(coursesService, 'getList').and.returnValue(of(coursesListMock));
     const searchQuery = coursesListMock[1].title;
     component.search(searchQuery);
     expect(coursesService.getList.calls.mostRecent().args[2]).toBe(searchQuery);
   });
-
-  // it('should set isModalOpen to true', () => {
-  //   component.isModalOpen = false;
-  //   // fixture.detectChanges();
-  //   component.openModal('1');
-  //   expect(component.isModalOpen).toEqual(true);
-  // });
-
-  // it('should set isModalOpen to false', () => {
-  //   component.isModalOpen = true;
-  //   fixture.detectChanges();
-  //   component.closeModal();
-  //   expect(component.isModalOpen).toEqual(false);
-  // });
-
-  // it('should call remove method on service', () => {
-  //   const coursesService = TestBed.get(CoursesService);
-  //   spyOn(coursesService, 'remove').and.returnValue(of(null));
-  //   component.delete((courseMock.id).toString());
-  //   expect(coursesService.remove).toHaveBeenCalled();
-  // });
-
-  // it('should call delete method after confirmation in modal window', () => {
-  //   spyOn(component, 'delete');
-  //   component.handleModalResponse(true);
-  //   expect(component.delete).toHaveBeenCalled();
-  // });
-
-  // it('should not call delete method after cancel is clicked', () => {
-  //   spyOn(component, 'delete');
-  //   component.handleModalResponse(false);
-  //   expect(component.delete).not.toHaveBeenCalled();
-  // });
-
-  // it('should navigate to courses/new page', () => {
-  //   const router = TestBed.get(Router);
-  //   spyOn(router, 'navigate');
-  //   component.addCourse();
-  //   expect(router.navigate).toHaveBeenCalledWith(['courses', 'new']);
-  // });
-
-  // it('should navigate to course:id page', () => {
-  //   const router = TestBed.get(Router);
-  //   spyOn(router, 'navigate');
-  //   component.edit(courseMock);
-  //   expect(router.navigate).toHaveBeenCalledWith(['/courses', courseMock.id]);
-  // });
 });

@@ -35,15 +35,15 @@ describe('HighlightNewDirective', () => {
     expect(directiveElement).not.toBeNull();
   });
 
-  // it('should color border with green color 2px wide', () => {
-  //   const freshCourse = new Date();
-  //   freshCourse.setDate(freshCourse.getDate() - 1);
-  //   component.creationDate = +new Date(freshCourse);
-  //   fixture.detectChanges();
-  //   headerElement = fixture.nativeElement.querySelector('.header');
-  //   const border = headerElement.style.border;
-  //   expect(border).toBe('2px solid rgb(0, 255, 0)');
-  // });
+  it('should color border with green color 2px wide', () => {
+    const freshCourse = new Date();
+    freshCourse.setDate(freshCourse.getDate() - 1);
+    component.creationDate = +new Date(freshCourse);
+    fixture.detectChanges();
+    headerElement = fixture.nativeElement.querySelector('.header');
+    const border = headerElement.style.border;
+    expect(border).toBe('2px solid rgb(0, 255, 0)');
+  });
 
   it('should color border with blue color 2px wide', () => {
     const upcomingCourse = new Date();

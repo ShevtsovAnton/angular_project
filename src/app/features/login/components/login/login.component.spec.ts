@@ -42,4 +42,15 @@ describe('LoginComponent', () => {
     component.onSubmit(loginInput, passwordInput);
     expect(loginInput.value).toBe('');
   });
+
+  it('should alert when fields are empty', () => {
+    spyOn(window, 'alert');
+    debugElement = fixture.debugElement;
+    const loginInput: HTMLInputElement = debugElement.query(By.css('input[type="text"]')).nativeElement;
+    const passwordInput: HTMLInputElement = debugElement.query(By.css('input[type="password"]')).nativeElement;
+    loginInput.value = '';
+    passwordInput.value = '';
+    component.onSubmit(loginInput, passwordInput);
+    expect(window.alert).toHaveBeenCalled();
+  });
 });

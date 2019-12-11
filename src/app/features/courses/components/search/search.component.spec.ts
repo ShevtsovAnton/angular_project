@@ -8,8 +8,7 @@ import { By } from '@angular/platform-browser';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  let keyPress: KeyboardEvent;
-  let searchInput: HTMLInputElement
+  let searchInput: HTMLInputElement;
   let debugElement: DebugElement;
 
   beforeEach(async(() => {

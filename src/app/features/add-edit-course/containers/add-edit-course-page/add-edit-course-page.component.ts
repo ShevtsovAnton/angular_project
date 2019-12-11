@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription, Subject } from 'rxjs';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
 import { takeUntil } from 'rxjs/operators';
