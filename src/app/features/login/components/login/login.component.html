@@ -1,0 +1,18 @@
+<div class="login__container">
+  <h2 class="login__header">Login</h2>
+  <form (submit)="onSubmit(username, password)" class="login__form">
+    <div class="login__input-container">
+      <label for="username">Username</label>
+      <input type="text" class="login__input" #username required />
+    </div>
+    <div class="login__input-container">
+      <label for="password">Password</label>
+      <input type="password" class="login__input" #password required />
+    </div>
+    <div>
+      <button type="submit" class="login__button">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

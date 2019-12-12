@@ -21,4 +21,19 @@
         color: $golden-dark;
         }
     }
+
+    &__logout {
+        padding: 5px 10px;
+        background-color: $golden;
+        border-radius: 5px;
+        color: $black-steel;
+        margin-right: 15px;
+        outline: none;
+        width: 60px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $golden-dark;
+        }
+    }
 }

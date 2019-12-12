@@ -11,14 +11,30 @@ import { SearchMockComponent } from '../../components/search/search.component.mo
 import { CoursesItemMockComponent } from '../../components/courses-item/courses-item.component.mock';
 import { OrderByMockPipe } from '../../pipes/order-by.pipe.mock';
 import { coursesListMock } from './courses-list.mock';
+import { ConfirmationModalMockComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component.mock';
+import { CoursesService } from '../../services/courses.service';
 import { CoursesItemModel } from '../../models/courses-item.model';
+
+const courseMock: CoursesItemModel = {
+  id: 1,
+  title: 'Angular',
+  creationDate: +new Date(2019, 10, 9),
+  duration: 500,
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  imagePath: '',
+  topRated: true
+};
+
+const coursesServiceStub: Partial<CoursesService> = {
+  getList: () => coursesListMock,
+  remove: () => null
+};
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
   let fixture: ComponentFixture<CoursesPageComponent>;
   let hostElement: HTMLElement;
   let appSearchElement: HTMLElement;
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -32,7 +48,11 @@ describe('CoursesPageComponent', () => {
         AddCourseMockComponent,
         SearchMockComponent,
         CoursesItemMockComponent,
-        OrderByMockPipe
+        OrderByMockPipe,
+        ConfirmationModalMockComponent
+      ],
+      providers: [
+        { provide: CoursesService, useValue: coursesServiceStub }
       ]
     })
     .compileComponents();
@@ -59,15 +79,41 @@ describe('CoursesPageComponent', () => {
 
   it('should filter results', () => {
     component.coursesList = coursesListMock;
-    component.filteredCoursesList = [];
-    component.search('Angular');
-    expect(component.filteredCoursesList[0].title).toBe('Angular');
+    component.search(coursesListMock[1].title);
+    expect(component.coursesList[0].title).toBe(coursesListMock[1].title);
   });
 
   it('should display all courses', () => {
-    component.coursesList = coursesListMock;
-    component.filteredCoursesList = [];
+    const coursesService = TestBed.get(CoursesService);
+    component.coursesList = [];
     component.search(' ');
-    expect(component.filteredCoursesList.length).toBe(component.coursesList.length);
+    expect(component.coursesList.length).toBe(coursesService.getList().length);
+  });
+
+  it('should set isModalOpen to true', () => {
+    component.isModalOpen = false;
+    fixture.detectChanges();
+    component.openModal(courseMock);
+    expect(component.isModalOpen).toEqual(true);
+  });
+
+  it('should set isModalOpen to false', () => {
+    component.isModalOpen = true;
+    fixture.detectChanges();
+    component.closeModal();
+    expect(component.isModalOpen).toEqual(false);
+  });
+
+  it('should call remove method on service', () => {
+    const coursesService = TestBed.get(CoursesService);
+    spyOn(coursesService, 'remove');
+    component.delete(courseMock);
+    expect(coursesService.remove).toHaveBeenCalled();
+  });
+
+  it('should call delete method after confirmation in modal window', () => {
+    spyOn(component, 'delete');
+    component.handleModalResponse(true);
+    expect(component.delete).toHaveBeenCalled();
   });
 });

@@ -6,6 +6,7 @@ import localeUa from '@angular/common/locales/ru-UA';
 import { AppComponent } from './app.component';
 import { CoursesModule } from './features/courses/courses.module';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginModule } from './features/login/login.module';
 
 
 
@@ -18,6 +19,7 @@ registerLocaleData(localeUa, 'ru-Ua');
   imports: [
     BrowserModule,
     CoursesModule,
+    LoginModule,
     AppRoutingModule
   ],
   providers: [

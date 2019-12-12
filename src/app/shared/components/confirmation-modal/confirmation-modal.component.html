@@ -1,0 +1,14 @@
+<div class="modal__overlay " (click)=handleClick(false)>
+  <div class="modal__container" (click)=handleModalWindowClick($event)>
+    <h2 class="modal__title">Confirmation dialog</h2>
+    <div class="modal__content">
+      <p class="modal__text">
+        {{message}}
+      </p>
+      <div class="modal__buttons">
+        <button class="modal__button" (click)=handleClick(true)>Ok</button>
+        <button class="modal__button" (click)=handleClick(false)>Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

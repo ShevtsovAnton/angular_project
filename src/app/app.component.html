@@ -1,2 +1,2 @@
-<app-courses-page></app-courses-page>
-
+<app-login-page *ngIf="!(isAuthenticated | async)"></app-login-page>
+<app-courses-page *ngIf="isAuthenticated | async"></app-courses-page>

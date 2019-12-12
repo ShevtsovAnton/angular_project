@@ -1,0 +1,44 @@
+@import '../../../../../styles/variables.scss';
+
+.login {
+    &__container {
+        width: 400px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin: auto;
+        background: $white-color;
+    }
+
+    &__header {
+        margin: 0px;
+        padding: 5px 10px;
+        background-color: $header-color;
+    }
+
+    &__form {
+        margin: 20px;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 5px;
+        border-radius: 3px;
+        outline: none;
+        margin-bottom: 10px;
+    }
+
+    &__button {
+        padding: 5px 10px;
+        background-color: $golden;
+        border-radius: 5px;
+        color: $black-steel;
+        margin-right: 15px;
+        outline: none;
+        width: 60px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $golden-dark;
+        }
+    }
+}
