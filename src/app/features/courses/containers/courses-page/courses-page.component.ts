@@ -9,7 +9,6 @@ import { CoursesItemModel } from '../../models/courses-item.model';
 
 export class CoursesPageComponent implements OnInit {
   coursesList: CoursesItemModel[];
-  clickedTimes = 0;
 
   ngOnInit() {
     this.coursesList = [
@@ -86,9 +85,5 @@ export class CoursesPageComponent implements OnInit {
         imagePath: '../../../../assets/node_new.jpeg'
       }
     ];
-  }
-
-  addOneCourse() {
-    this.clickedTimes += 1;
   }
 }
