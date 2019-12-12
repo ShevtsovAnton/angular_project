@@ -7,7 +7,10 @@ import { AddEditCoursePageComponent } from './features/add-edit-course/container
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  { path: 'courses', component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+
   {
     path: 'courses/new',
     component: AddEditCoursePageComponent,
@@ -20,8 +23,6 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-  { path: 'courses', component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
