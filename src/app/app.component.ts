@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AuthorizationService } from './features/login/services/authorization.service';
+import { AddEditCourseService } from './features/add-edit-course/services/add-edit-course.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,15 @@ import { AuthorizationService } from './features/login/services/authorization.se
 })
 export class AppComponent implements OnInit {
 
-  isAuthenticated: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
+  isAddEditCourseOpen$: Observable<boolean>;
 
-  constructor(private authService: AuthorizationService) {}
+  constructor(private authService: AuthorizationService,
+              private addEditCourseService: AddEditCourseService,
+              ) {}
 
   ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAuthenticated$ = this.authService.isAuthenticated();
+    this.isAddEditCourseOpen$ = this.addEditCourseService.isAddEditCourseOpen();
   }
 }

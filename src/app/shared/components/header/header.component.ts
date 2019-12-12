@@ -10,14 +10,14 @@ import { AuthorizationService } from 'src/app/features/login/services/authorizat
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isAuthenticated: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
   user: UserModel;
 
   constructor(private authService: AuthorizationService) {}
 
   ngOnInit() {
     this.user = {id: 1, firstName: 'Tom', lastName: 'Smith'};
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAuthenticated$ = this.authService.isAuthenticated();
   }
 
   logout() {

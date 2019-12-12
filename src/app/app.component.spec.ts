@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CoursesPageMockComponent } from './features/courses/containers/courses-page/courses-page.component.mock';
 import { LoginPageMockComponent } from './features/login/containers/login-page/login-page.component.mock';
+import { AddEditCoursePageMockComponent } from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component.mock';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         CoursesPageMockComponent,
-        LoginPageMockComponent
+        LoginPageMockComponent,
+        AddEditCoursePageMockComponent
       ],
     }).compileComponents();
   }));

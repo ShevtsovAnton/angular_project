@@ -12,7 +12,8 @@
       </div>
       <app-courses-list
           [coursesList]="coursesList | orderBy"
-          (deleteCourse)="openModal($event)">
+          (deleteCourse)="openModal($event)"
+          (editCourse)="edit()">
       </app-courses-list>
       <app-load-more></app-load-more>
       <div *ngIf="!coursesList.length">

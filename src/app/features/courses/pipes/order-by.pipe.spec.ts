@@ -1,6 +1,5 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { OrderByPipe } from './order-by.pipe';
 import { coursesListMock } from '../containers/courses-page/courses-list.mock';
