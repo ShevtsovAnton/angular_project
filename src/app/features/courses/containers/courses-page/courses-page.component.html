@@ -4,15 +4,20 @@
       <div class="tools__container">
           <app-breadcrumbs></app-breadcrumbs>
           <div class="tools">
-              <app-search class="search"></app-search>
+              <app-search
+                class="search"
+                (makeSearchQuery)="search($event)"></app-search>
               <app-add-course></app-add-course>
           </div>
       </div>
       <app-courses-list
-          [coursesList]="coursesList"
+          [coursesList]="filteredCoursesList | orderBy"
           (deleteCourse)="delete($event)">
       </app-courses-list>
       <app-load-more></app-load-more>
+      <div *ngIf="filteredCoursesList.length === 0">
+        <span class="courses-page__no-data">{{noDataMessage | uppercase}}</span>
+      </div>
   </div>
   <app-footer class="footer__container"></app-footer>
 </div>
