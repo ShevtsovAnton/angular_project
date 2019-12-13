@@ -49,11 +49,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     } else {
       this.coursesService.updateCourse(this.course);
     }
-    this.router.navigate([AppRoutes]);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   cancel(): void {
-    this.router.navigate([AppRoutes]);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   ngOnDestroy(): void {
