@@ -29,7 +29,7 @@ export class AuthorizationService {
     localStorage.setItem('loginInfo', JSON.stringify(loginInfo));
     this.isLoggedInSubject.next(this.hasToken());
     console.log(`You are logged in successfully as ${userLogin}`);
-    this.router.navigate(['/courses']);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   logout(): void {
