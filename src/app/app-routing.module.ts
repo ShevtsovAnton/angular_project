@@ -5,25 +5,23 @@ import { LoginPageComponent } from './features/login/containers/login-page/login
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AddEditCoursePageComponent } from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component';
 import { AuthGuard } from './auth.guard';
-import { AppRoutes } from './shared/enums/routes.enum'
 
 const routes: Routes = [
-  { path: '', redirectTo: AppRoutes.Courses, pathMatch: 'full' },
-  { path: AppRoutes.Login, component: LoginPageComponent, pathMatch: 'full' },
-  { path: AppRoutes.Courses, component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-
+  { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
   {
-    path: AppRoutes.Courses_New,
+    path: 'courses/new',
     component: AddEditCoursePageComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   {
-    path: AppRoutes.Courses_Id,
+    path: 'courses/:id',
     component: AddEditCoursePageComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
+  { path: 'courses', component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

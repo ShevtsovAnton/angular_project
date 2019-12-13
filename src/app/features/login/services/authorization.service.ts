@@ -4,12 +4,9 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
-import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 const LOGIN_PATH = 'http://localhost:3004/auth/login';
 const USER_INFO_PATH = 'http://localhost:3004/auth/userinfo';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +44,7 @@ export class AuthorizationService {
           localStorage.setItem('token', this.token);
           localStorage.setItem('userInfo', `${userInfo.name.first} ${userInfo.name.last}`);
           this.isLoggedInSubject.next(!!this.token);
-          this.router.navigate([AppRoutes.Courses]);
+          this.router.navigate(['/courses']);
         }, (error) => {
           console.log(error);
         });
@@ -62,7 +59,7 @@ export class AuthorizationService {
     this._token = '';
     this.isLoggedInSubject.next(!!this.token);
     console.log('You are logged out');
-    this.router.navigate([AppRoutes.Login]);
+    this.router.navigate(['/login']);
   }
 
   getUserInfo(): string {
