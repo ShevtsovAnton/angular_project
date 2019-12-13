@@ -35,7 +35,7 @@ export class CoursesService {
   }
 
   updateCourse(updatedCourse: CoursesItemModel): Observable<CoursesItemModel> {
-    return this.http.patch<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }`, updatedCourse);
+    return this.http.patch<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }/${updatedCourse.id}`, updatedCourse);
   }
 
   remove(id: string): Observable<any> {
