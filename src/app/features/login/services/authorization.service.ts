@@ -62,10 +62,8 @@ export class AuthorizationService {
     this.router.navigate(['/login']);
   }
 
-  getUserInfo(): string {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      return userInfo;
-    }
+  getUserInfo(): Observable<UserModel> {
+    return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: this._token })
+
   }
 }

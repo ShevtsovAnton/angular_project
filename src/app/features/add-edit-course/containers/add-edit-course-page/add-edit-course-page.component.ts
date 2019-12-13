@@ -42,8 +42,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(course => {
               this.course = course;
-            }
-            );
+            });
           this.isCourseNew = false;
         }
       });
