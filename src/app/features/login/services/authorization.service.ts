@@ -16,7 +16,6 @@ export class AuthorizationService {
    }
 
   private hasToken(): boolean {
-    console.log(!!localStorage.getItem('loginInfo'));
     return !!localStorage.getItem('loginInfo');
   }
 
