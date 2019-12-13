@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
 import { Subscription } from 'rxjs';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
   selector: 'app-add-edit-course-page',
@@ -48,11 +49,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     } else {
       this.coursesService.updateCourse(this.course);
     }
-    this.router.navigate(['/courses']);
+    this.router.navigate([AppRoutes]);
   }
 
   cancel(): void {
-    this.router.navigate(['/courses']);
+    this.router.navigate([AppRoutes]);
   }
 
   ngOnDestroy(): void {

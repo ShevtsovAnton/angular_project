@@ -3,6 +3,7 @@ import { LowerCasePipe } from '@angular/common';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
 import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
   selector: 'app-courses-page',
@@ -36,7 +37,7 @@ export class CoursesPageComponent implements OnInit {
   }
 
   edit(course: CoursesItemModel): void {
-    this.router.navigate(['/courses', course.id]);
+    this.router.navigate([AppRoutes.Courses, course.id]);
   }
 
   search(searchQuery: string): void {

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +36,7 @@ export class AuthorizationService {
     localStorage.removeItem('loginInfo');
     this.isLoggedInSubject.next(this.hasToken());
     console.log('You are logged out');
-    this.router.navigate(['/login']);
+    this.router.navigate([AppRoutes.Login]);
   }
 
   getUserInfo(): string {
