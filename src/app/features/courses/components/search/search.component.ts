@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-search',
@@ -7,11 +10,30 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SearchComponent {
 
-  @Output() makeSearchQuery: EventEmitter<string> = new EventEmitter();
-  searchQuery = '';
+  @Output() makeSearchQuery = new EventEmitter<string>();
+  @ViewChild('searchInput') searchInputRef: ElementRef;
 
-  search(): void {
-    this.makeSearchQuery.emit(this.searchQuery);
-    this.searchQuery = '';
+  searchInputValue = '';
+  private destroy$ = new Subject();
+
+  ngOnInit() {
+    const searchInputObservable = fromEvent(this.searchInputRef.nativeElement, 'input');
+
+    searchInputObservable
+      .pipe(
+        debounceTime(1000),
+        filter((e: any) => e.target.value.length >= 3),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(e => this.search());
+  }
+
+  search() {
+    this.makeSearchQuery.emit(this.searchInputValue);
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
