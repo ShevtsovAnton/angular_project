@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActiva
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthorizationService } from './features/login/services/authorization.service';
+import { AppRoutes } from './shared/enums/routes.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> {
     return this.authorizationService.isAuthenticated()
       .pipe(
+<<<<<<< HEAD
         map(isAuthenticated => {
           if (isAuthenticated) {
             return true;
@@ -27,6 +29,9 @@ export class AuthGuard implements CanActivate {
             return false;
           }
         })
+=======
+        map(isAuthenticated => !!isAuthenticated || this.router.createUrlTree([AppRoutes.Login]))
+>>>>>>> 78c197e... feat: add enum for routes
       );
   }
 }

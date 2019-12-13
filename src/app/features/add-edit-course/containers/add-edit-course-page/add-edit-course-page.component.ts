@@ -4,6 +4,7 @@ import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.m
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
   selector: 'app-add-edit-course-page',
@@ -58,10 +59,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe(res => this.router.navigate(['/courses']));
     }
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   cancel(): void {
-    this.router.navigate(['/courses']);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   ngOnDestroy(): void {

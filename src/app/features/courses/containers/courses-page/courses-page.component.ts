@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
   selector: 'app-courses-page',
@@ -53,7 +54,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   edit(course: CoursesItemModel): void {
-    this.router.navigate(['/courses', course.id]);
+    this.router.navigate([AppRoutes.Courses, course.id]);
   }
 
   search(textFragment: string): void {

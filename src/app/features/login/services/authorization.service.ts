@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
 
 const LOGIN_PATH = 'http://localhost:3004/auth/login';
 const USER_INFO_PATH = 'http://localhost:3004/auth/userinfo';
+=======
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
+
+>>>>>>> 78c197e... feat: add enum for routes
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +64,7 @@ export class AuthorizationService {
     this._token = '';
     this.isLoggedInSubject.next(!!this.token);
     console.log('You are logged out');
-    this.router.navigate(['/login']);
+    this.router.navigate([AppRoutes.Login]);
   }
 
   getUserInfo(): Observable<UserModel> {
