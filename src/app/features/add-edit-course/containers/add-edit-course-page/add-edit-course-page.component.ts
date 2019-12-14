@@ -53,11 +53,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     if (this.isCourseNew) {
       this.coursesService.createCourse(this.course)
         .pipe(takeUntil(this.destroy$))
-        .subscribe(res => this.router.navigate(['/courses']));
+        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     } else {
       this.coursesService.updateCourse(this.course)
         .pipe(takeUntil(this.destroy$))
-        .subscribe(res => this.router.navigate(['/courses']));
+        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     }
     this.router.navigate([AppRoutes.Courses]);
   }

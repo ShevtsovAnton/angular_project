@@ -8,7 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { AppRoutes } from './shared/enums/routes.enum'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/courses', pathMatch: 'full' },
+  { path: '', redirectTo: AppRoutes.Courses, pathMatch: 'full' },
   { path: AppRoutes.Login, component: LoginPageComponent, pathMatch: 'full' },
   { path: AppRoutes.Courses, component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   {
@@ -23,8 +23,6 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-  { path: 'courses', component: CoursesPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 const LOGIN_PATH = 'http://localhost:3004/auth/login';
 const USER_INFO_PATH = 'http://localhost:3004/auth/userinfo';
-=======
-import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
->>>>>>> 78c197e... feat: add enum for routes
+
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +47,7 @@ export class AuthorizationService {
           localStorage.setItem('token', this.token);
           localStorage.setItem('userInfo', `${userInfo.name.first} ${userInfo.name.last}`);
           this.isLoggedInSubject.next(!!this.token);
-          this.router.navigate(['/courses']);
+          this.router.navigate([AppRoutes.Courses]);
         }, (error) => {
           console.log(error);
         });
