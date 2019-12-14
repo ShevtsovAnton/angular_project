@@ -11,7 +11,7 @@ export class DateInputComponent {
 
   onCreationDateChange(event): void {
     const dateString = event.target.value;
-    const [day, month, year] = dateString.split('/');
+    const [day, month, year] = dateString.split(/\/|\./);
     const dateInMs = Date.parse(`${month}/${day}/${year}`);
     this.creationDateChange.emit(dateInMs);
   }
