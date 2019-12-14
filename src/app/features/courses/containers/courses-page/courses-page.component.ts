@@ -32,6 +32,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
     this.coursesService.getList(this.page - 1, this.coursesPerPage)
       .pipe(takeUntil(this.destroy$))
       .subscribe(coursesList => {
+        console.log('ngOnInit Courses Container');
         this.courses = coursesList;
       });
   }
@@ -92,11 +93,10 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
     this.coursesService.getList(this.page - 1, this.coursesPerPage)
       .pipe(takeUntil(this.destroy$))
       .subscribe(courses => {
+        this.courses = [...this.courses, ...courses];
         if (courses.length < this.coursesPerPage) {
           this.allCoursesDisplayed = true;
-          return;
         }
-        this.courses = [...this.courses, ...courses];
       });
   }
 

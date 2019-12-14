@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { takeUntil, flatMap, catchError, filter } from 'rxjs/operators';
+import { Subject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-course-page',
@@ -17,7 +17,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     creationDate: null,
     duration: null,
     description: null,
-    imagePath: null,
+    imagePath: '../../../../assets/default.jpeg',
     topRated: false,
     authors: [{
       id: '999',
@@ -35,21 +35,24 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params: Params) => {
-        if (params.id) {
-          this.coursesService.getCourse(params.id)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(course => {
-              this.course = course;
-            }
-            );
-          this.isCourseNew = false;
-        }
+      .pipe(
+        filter((params: Params) => params.id !== undefined),
+        flatMap((params: Params): Observable<CoursesItemModel> => {
+          if (params.id) {
+            return this.coursesService.getCourse(params.id)
+          }
+        }),
+        catchError(error => of(error)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(course => {
+        this.course = course;
+        this.isCourseNew = false;
       });
   }
 
   save(): void {
+    console.log('this.isCourseNew', this.isCourseNew)
     if (this.isCourseNew) {
       this.coursesService.createCourse(this.course)
         .pipe(takeUntil(this.destroy$))

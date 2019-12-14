@@ -27,6 +27,7 @@ export class CoursesService {
   }
 
   createCourse(course: CoursesItemModel): Observable<CoursesItemModel> {
+    console.log(course);
     return this.http.post<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }`, course);
   }
 
