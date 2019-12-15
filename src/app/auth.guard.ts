@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActiva
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthorizationService } from './features/login/services/authorization.service';
+import { AppRoutes } from './shared/enums/routes.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthGuard implements CanActivate {
           if (isAuthenticated) {
             return true;
           } else {
-            this.router.navigate(['/login']);
+            this.router.navigate([AppRoutes.Login]);
             return false;
           }
         })

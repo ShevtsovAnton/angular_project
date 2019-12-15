@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subscription, of } from 'rxjs';
 import { flatMap, catchError } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
 import { TokenModel } from '../models/token.model';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 const LOGIN_PATH = 'http://localhost:3004/auth/login';
 const USER_INFO_PATH = 'http://localhost:3004/auth/userinfo';
@@ -48,7 +49,7 @@ export class AuthorizationService {
         localStorage.setItem('token', this.token);
         localStorage.setItem('userInfo', `${userInfo.name.first} ${userInfo.name.last}`);
         this.isLoggedInSubject.next(!!this.token);
-        this.router.navigate(['/courses']);
+        this.router.navigate([AppRoutes.Courses);
       }, (error) => {
         console.log(error);
       });

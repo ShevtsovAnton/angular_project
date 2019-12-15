@@ -4,6 +4,7 @@ import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.m
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
 import { takeUntil, flatMap, catchError, filter } from 'rxjs/operators';
 import { Subject, Observable, of } from 'rxjs';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
   selector: 'app-add-edit-course-page',
@@ -55,16 +56,16 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     if (this.isCourseNew) {
       this.coursesService.createCourse(this.course)
         .pipe(takeUntil(this.destroy$))
-        .subscribe(res => this.router.navigate(['/courses']));
+        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     } else {
       this.coursesService.updateCourse(this.course)
         .pipe(takeUntil(this.destroy$))
-        .subscribe(res => this.router.navigate(['/courses']));
+        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/courses']);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   ngOnDestroy(): void {
