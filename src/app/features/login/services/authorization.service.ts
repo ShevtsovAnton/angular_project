@@ -49,7 +49,7 @@ export class AuthorizationService {
         localStorage.setItem('token', this.token);
         localStorage.setItem('userInfo', `${userInfo.name.first} ${userInfo.name.last}`);
         this.isLoggedInSubject.next(!!this.token);
-        this.router.navigate([AppRoutes.Courses);
+        this.router.navigate([AppRoutes.Courses]);
       }, (error) => {
         console.log(error);
       });
