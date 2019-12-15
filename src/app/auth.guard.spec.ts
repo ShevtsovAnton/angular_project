@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthGuard } from './auth.guard';
 import { AuthorizationService } from './features/login/services/authorization.service';
 import { of } from 'rxjs';
+import { AppRoutes } from './shared/enums/routes.enum';
 
 const authorizationServiceStub: Partial<AuthorizationService> = {
   isAuthenticated: () => of(true)
@@ -55,7 +56,7 @@ describe('AuthGuard', () => {
     const service = TestBed.get(AuthorizationService);
     spyOn(service, 'isAuthenticated').and.returnValue(of(false));
     guard.canActivate(null, null).subscribe( result => {
-      expect(result).toBe(false);
+      expect(result).not.toBe(true);
     });
   }));
 

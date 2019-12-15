@@ -8,6 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
   AddEditCoursePageMockComponent
 } from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component.mock';
+import { LoadingBlockMockComponent } from './shared/components/loading-block/loading-block.component.mock';
 
 
 // tslint:disable-next-line
@@ -23,7 +24,8 @@ describe('AppComponent', () => {
         CoursesPageMockComponent,
         LoginPageMockComponent,
         AddEditCoursePageMockComponent,
-        RouterOutletStubComponent
+        RouterOutletStubComponent,
+        LoadingBlockMockComponent
       ],
       imports: [
         RouterTestingModule,
