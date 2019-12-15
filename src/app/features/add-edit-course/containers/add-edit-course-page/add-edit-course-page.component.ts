@@ -39,7 +39,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
         filter((params: Params) => params.id !== undefined),
         flatMap((params: Params): Observable<CoursesItemModel> => {
           if (params.id) {
-            return this.coursesService.getCourse(params.id)
+            return this.coursesService.getCourse(params.id);
           }
         }),
         catchError(error => of(error)),
@@ -52,7 +52,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    console.log('this.isCourseNew', this.isCourseNew)
     if (this.isCourseNew) {
       this.coursesService.createCourse(this.course)
         .pipe(takeUntil(this.destroy$))
