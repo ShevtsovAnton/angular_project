@@ -45,7 +45,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
             this.page -= 1;
           }
           this.numberOfCourses -= 1;
-          return this.coursesService.getList(this.page - 1, this.coursesPerPage)
+          return this.coursesService.getList(this.page - 1, this.coursesPerPage);
         }),
         takeUntil(this.destroy$)
       )
