@@ -6,22 +6,20 @@ import { tap, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
-  count = 0;
+  private count = 0;
   constructor(private spinnerService: SpinnerService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.spinnerService.changeSpinnerStateValue(true);
-    this.count++;
+    this.count += 1;
     return next.handle(req)
-      .pipe(tap(
-        event => console.log(event),
-        error => console.log(error)
-      ), finalize(() => {
-        this.count--;
-        if (!this.count) {
-          this.spinnerService.changeSpinnerStateValue(false);
-        }
-      })
+      .pipe(
+        finalize(() => {
+          this.count -= 1;
+          if (!this.count) {
+            this.spinnerService.changeSpinnerStateValue(false);
+          }
+        })
       );
   }
 }
