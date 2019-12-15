@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthorizationService } from 'src/app/features/login/services/authorization.service';
 import { UserModel } from 'src/app/features/login/models/user.model';
-import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthorizationService) {}
 
   ngOnInit(): void {
-    this.isAuthenticated$ = this.authService.isAuthenticated()
+    this.isAuthenticated$ = this.authService.isAuthenticated();
     this.userInfo$ = this.authService.getUserInfo();
   }
 

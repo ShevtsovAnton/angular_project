@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 
@@ -8,7 +8,7 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit, OnDestroy {
 
   @Output() makeSearchQuery = new EventEmitter<string>();
   @ViewChild('searchInput') searchInputRef: ElementRef;

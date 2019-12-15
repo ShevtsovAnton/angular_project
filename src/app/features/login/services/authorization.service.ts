@@ -43,7 +43,7 @@ export class AuthorizationService {
       flatMap((res: TokenModel): Observable<UserModel> => {
         this._token = res.token;
         return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: this._token })
-          .pipe(catchError(error => of(error)))
+          .pipe(catchError(error => of(error)));
       }))
       .subscribe((userInfo: UserModel) => {
         localStorage.setItem('token', this.token);
@@ -65,6 +65,6 @@ export class AuthorizationService {
   }
 
   getUserInfo(): Observable<UserModel> {
-    return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: this._token })
+    return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: this._token });
   }
 }
