@@ -86,7 +86,7 @@ describe('CoursesService', () => {
     service.updateCourse(courseMock).subscribe((data) => {
         expect(data).toEqual(courseMock);
       });
-    const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }`);
+    const req = httpMock.expectOne(`${ BASE_URL }${ COURSES_PATH }/${courseMock.id}`);
     expect(req.request.method).toEqual('PATCH');
     req.flush(courseMock);
     httpMock.verify();
