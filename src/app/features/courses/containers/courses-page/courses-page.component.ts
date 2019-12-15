@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil, flatMap } from 'rxjs/operators';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
@@ -39,17 +39,18 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   delete(id: string): void {
     this.coursesService.remove(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(res => {
-        if (this.page !== 1 && this.courses.length === 1) {
-          this.page -= 1;
-        }
-        this.numberOfCourses -= 1;
-        this.coursesService.getList(this.page - 1, this.coursesPerPage)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe(courses => {
-            this.courses = courses;
-          });
+      .pipe(
+        flatMap((res): Observable<CoursesItemModel[]> => {
+          if (this.page !== 1 && this.courses.length === 1) {
+            this.page -= 1;
+          }
+          this.numberOfCourses -= 1;
+          return this.coursesService.getList(this.page - 1, this.coursesPerPage)
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(courses => {
+        this.courses = courses;
       });
   }
 
