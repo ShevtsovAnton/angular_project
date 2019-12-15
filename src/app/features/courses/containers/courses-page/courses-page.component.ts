@@ -4,7 +4,6 @@ import { Subject, Observable } from 'rxjs';
 import { takeUntil, flatMap } from 'rxjs/operators';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
-import { CoursesModule } from '../../courses.module';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
@@ -17,7 +16,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   noDataMessage = 'No Data, feel free to add new course';
   isModalOpen = false;
   idToDelete: string;
-  numberOfCourses: number;
   coursesPerPage = 9;
   page = 1;
   searchQuery = '';
@@ -45,7 +43,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
           if (this.page !== 1 && this.courses.length === 1) {
             this.page -= 1;
           }
-          this.numberOfCourses -= 1;
           return this.coursesService.getList(this.page - 1, this.coursesPerPage);
         }),
         takeUntil(this.destroy$)
@@ -66,7 +63,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(coursesInfo => {
         this.courses = coursesInfo;
-        this.numberOfCourses = coursesInfo.length;
       });
   }
 
