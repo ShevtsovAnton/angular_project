@@ -126,7 +126,7 @@ describe('CoursesPageComponent', () => {
     const router = TestBed.get(Router);
     spyOn(router, 'navigate');
     component.edit(courseMock);
-    expect(router.navigate).toHaveBeenCalledWith(['/courses', courseMock.id]);
+    expect(router.navigate).toHaveBeenCalledWith(['courses', courseMock.id]);
   });
 
   it('should call service method with search query', () => {
