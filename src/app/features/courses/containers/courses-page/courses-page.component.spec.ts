@@ -24,7 +24,8 @@ const courseMock: CoursesItemModel = {
   duration: 500,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   imagePath: '',
-  topRated: true
+  topRated: true,
+  authors: ''
 };
 
 const coursesServiceStub: Partial<CoursesService> = {
@@ -139,6 +140,6 @@ describe('CoursesPageComponent', () => {
     const router = TestBed.get(Router);
     spyOn(router, 'navigate');
     component.edit(courseMock);
-    expect(router.navigate).toHaveBeenCalledWith(['/courses', courseMock.id]);
+    expect(router.navigate).toHaveBeenCalledWith(['courses', courseMock.id]);
   });
 });

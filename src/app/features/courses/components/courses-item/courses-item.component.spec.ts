@@ -13,7 +13,8 @@ const courseMock: CoursesItemModel = {
     duration: 120,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
 };
 
 // test as class

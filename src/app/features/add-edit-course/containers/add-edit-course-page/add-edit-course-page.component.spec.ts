@@ -71,6 +71,6 @@ describe('AddCoursePageComponent', () => {
     const router = TestBed.get(Router);
     spyOn(router, 'navigate');
     component.cancel();
-    expect(router.navigate).toHaveBeenCalledWith(['/courses']);
+    expect(router.navigate).toHaveBeenCalledWith(['courses']);
   });
 });

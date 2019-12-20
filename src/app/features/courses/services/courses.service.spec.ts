@@ -12,7 +12,8 @@ const courseMock: CoursesItemModel = {
   duration: 32,
   description: 'angular course',
   topRated: false,
-  imagePath: '../../../../assets/img/1.jpg'
+  imagePath: '../../../../assets/img/1.jpg',
+  authors: ''
 };
 
 let service: CoursesService;
@@ -49,7 +50,8 @@ describe('CoursesService', () => {
       duration: 32,
       description: 'angular course',
       topRated: false,
-      imagePath: ''
+      imagePath: '',
+      authors: ''
     };
     service.updateCourse(updatedCourse);
     expect(service.coursesList[0].title).toBe('UpdatedTitle');
