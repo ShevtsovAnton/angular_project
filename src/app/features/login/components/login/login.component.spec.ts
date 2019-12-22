@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { LoginComponent } from './login.component';
 
@@ -11,6 +12,7 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let debugElement: DebugElement;
+  const initialState = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,6 +20,9 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule
+      ],
+      providers: [
+        provideMockStore({ initialState }),
       ]
     })
     .compileComponents();

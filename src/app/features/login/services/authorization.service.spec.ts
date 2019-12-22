@@ -42,19 +42,19 @@ describe('AuthorizationService', () => {
       .and.callFake(mockLocalStorage.clear);
   });
 
-  it('getUserInfo() should call http post', () => {
-    service.getUserInfo().subscribe((data) => {
-      expect(data).toBe(userMock);
-    });
-    const req = httpMock.expectOne(`${ USER_INFO_PATH }`);
-    expect(req.request.method).toEqual('POST');
-    req.flush(userMock);
-    httpMock.verify();
-  });
+  // it('getUserInfo() should call http post', () => {
+  //   service.getUserInfo().subscribe((data) => {
+  //     expect(data).toBe(userMock);
+  //   });
+  //   const req = httpMock.expectOne(`${ USER_INFO_PATH }`);
+  //   expect(req.request.method).toEqual('POST');
+  //   req.flush(userMock);
+  //   httpMock.verify();
+  // });
 
-  it('should logout', () => {
-    spyOn(service.isLoggedInSubject, 'next').and.returnValue(of(false));
-    service.logout();
-    expect(service.isLoggedInSubject.next).toHaveBeenCalledWith(false);
-  });
+  // it('should logout', () => {
+  //   spyOn(service.isLoggedInSubject, 'next').and.returnValue(of(false));
+  //   service.logout();
+  //   expect(service.isLoggedInSubject.next).toHaveBeenCalledWith(false);
+  // });
 });
