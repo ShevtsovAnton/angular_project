@@ -5,7 +5,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthGuard } from './auth.guard';
 import { AuthorizationService } from './features/login/services/authorization.service';
 import { of } from 'rxjs';
-import { AppRoutes } from './shared/enums/routes.enum';
 
 const authorizationServiceStub: Partial<AuthorizationService> = {
   isAuthenticated: () => of(true)

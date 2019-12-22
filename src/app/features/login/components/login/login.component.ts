@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthorizationService } from '../../services/authorization.service';
+import { Store } from '@ngrx/store';
+import { loginRequest } from '../../store/auth.actions';
+import { AppState } from 'src/app/core/store/app-store.model';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,13 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthorizationService) {}
+  constructor(
+    private store: Store<AppState>
+    ) {}
 
   onSubmit(username: HTMLInputElement, password: HTMLInputElement): void {
     if (username.value && password.value) {
-      this.authService.login(username.value, password.value);
+      this.store.dispatch(loginRequest({ login: username.value, password: password.value }));
       username.value = '';
       password.value = '';
     } else {
