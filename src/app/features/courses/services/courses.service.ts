@@ -39,7 +39,7 @@ export class CoursesService {
     return this.http.patch<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }/${updatedCourse.id}`, updatedCourse);
   }
 
-  remove(id: string): Observable<any> {
+  remove(id: number): Observable<any> {
     return this.http.delete(`${ BASE_URL }${ COURSES_PATH }/${ id }`);
   }
 }

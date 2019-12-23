@@ -85,7 +85,7 @@ describe('CoursesPageComponent', () => {
 
   it('should set isModalOpen to true', () => {
     component.isModalOpen = false;
-    component.openModal('1');
+    component.openModal(1);
     fixture.detectChanges();
     expect(component.isModalOpen).toEqual(true);
   });
@@ -99,7 +99,7 @@ describe('CoursesPageComponent', () => {
   it('should call remove method on service', () => {
     const coursesService = TestBed.get(CoursesService);
     spyOn(coursesService, 'remove').and.returnValue(of(null));
-    component.delete((courseMock.id).toString());
+    component.delete((courseMock.id));
     expect(coursesService.remove).toHaveBeenCalled();
   });
 
