@@ -39,9 +39,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
       .pipe(
         filter((params: Params) => params.id !== undefined),
         flatMap((params: Params): Observable<CoursesItemModel> => {
-          if (params.id) {
-            return this.coursesService.getCourse(params.id);
-          }
+          return this.coursesService.getCourse(params.id);
         }),
         catchError(error => of(error)),
         takeUntil(this.destroy$)
