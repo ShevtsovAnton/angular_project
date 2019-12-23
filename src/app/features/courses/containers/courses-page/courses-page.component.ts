@@ -15,7 +15,7 @@ import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 export class CoursesPageComponent implements OnInit, OnDestroy {
   noDataMessage = 'No Data, feel free to add new course';
   isModalOpen = false;
-  idToDelete: string;
+  idToDelete: number;
   coursesPerPage = 9;
   page = 1;
   searchQuery = '';
@@ -36,7 +36,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  delete(id: string): void {
+  delete(id: number): void {
     this.coursesService.remove(id)
       .pipe(
         flatMap((res): Observable<CoursesItemModel[]> => {
@@ -66,7 +66,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  openModal(id: string): void {
+  openModal(id: number): void {
     this.idToDelete = id;
     this.isModalOpen = true;
   }
