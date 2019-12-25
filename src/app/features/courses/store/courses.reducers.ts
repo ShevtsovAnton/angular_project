@@ -16,10 +16,14 @@ const _coursesReducer = createReducer(initialCoursesState,
         list
     })),
 
-    on(loadMoreCoursesSuccess, (state, { list }) => ({
+    on(loadMoreCoursesSuccess, (state, { list }) => {
+        const allCoursesDisplayed = !list.length;
+        return ({
         ...state,
-        list: [...state.list, ...list]
-    })),
+        list: [...state.list, ...list],
+        allCoursesDisplayed
+    })
+}),
 
     on(getCourseSuccess, (state, { course }) => ({
         ...state,

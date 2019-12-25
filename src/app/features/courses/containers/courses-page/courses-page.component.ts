@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
-import { takeUntil, flatMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CoursesItemModel } from '../../models/courses-item.model';
-import { CoursesService } from '../../services/courses.service';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
+import { getCoursesList, removeCourse, loadMoreCourses, searchCourses } from '../../store/courses.actions';
+import { AppState } from 'src/app/core/store/app-store.model';
 
 @Component({
   selector: 'app-courses-page',
@@ -12,44 +13,34 @@ import { AppRoutes } from 'src/app/shared/enums/routes.enum';
   styleUrls: ['./courses-page.component.scss']
 })
 
-export class CoursesPageComponent implements OnInit, OnDestroy {
+export class CoursesPageComponent implements OnInit {
   noDataMessage = 'No Data, feel free to add new course';
   isModalOpen = false;
-  idToDelete: string;
+  idToDelete: number;
   coursesPerPage = 9;
   page = 1;
   searchQuery = '';
   courses: CoursesItemModel[] = [];
-  allCoursesDisplayed = false;
-  private destroy$ = new Subject();
+  allCoursesDisplayed$: Observable<boolean>;
+  list$: Observable<CoursesItemModel[]>;
 
   constructor(
-    private coursesService: CoursesService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    this.coursesService.getList(this.page - 1, this.coursesPerPage)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(coursesList => {
-        this.courses = coursesList;
-      });
+    this.store.dispatch(getCoursesList({
+      page: this.page - 1,
+      count: this.coursesPerPage,
+      textFragment: this.searchQuery
+    }));
+    this.list$ = this.store.select(store => store.courses.list);
+    this.allCoursesDisplayed$ = this.store.select(store => store.courses.allCoursesDisplayed);
   }
 
-  delete(id: string): void {
-    this.coursesService.remove(id)
-      .pipe(
-        flatMap((res): Observable<CoursesItemModel[]> => {
-          if (this.page !== 1 && this.courses.length === 1) {
-            this.page -= 1;
-          }
-          return this.coursesService.getList(this.page - 1, this.coursesPerPage);
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(courses => {
-        this.courses = courses;
-      });
+  delete(id: number): void {
+    this.store.dispatch(removeCourse({ id }));
   }
 
   edit(course: CoursesItemModel): void {
@@ -57,16 +48,14 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   search(textFragment: string): void {
-    this.searchQuery = textFragment;
-
-    this.coursesService.getList(0, this.coursesPerPage, textFragment)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(coursesInfo => {
-        this.courses = coursesInfo;
-      });
+    this.store.dispatch(searchCourses({
+      page: 0,
+      count: this.coursesPerPage,
+      textFragment
+    }));
   }
 
-  openModal(id: string): void {
+  openModal(id: number): void {
     this.idToDelete = id;
     this.isModalOpen = true;
   }
@@ -88,19 +77,10 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   loadMore(): void {
     this.page += 1;
-    this.coursesService.getList(this.page - 1, this.coursesPerPage)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(courses => {
-        if (courses.length < this.coursesPerPage) {
-          this.allCoursesDisplayed = true;
-          return;
-        }
-        this.courses = [...this.courses, ...courses];
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.store.dispatch(loadMoreCourses({
+      page: this.page - 1,
+      count: this.coursesPerPage,
+      textFragment: this.searchQuery
+    }));
   }
 }

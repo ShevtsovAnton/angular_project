@@ -4,6 +4,7 @@ import { CoursesItemModel } from '../models/courses-item.model';
 export interface CoursesStateModel {
     list: CoursesItemModel[];
     selectedCourse: CoursesItemModel;
+    allCoursesDisplayed: boolean
 }
 
 export const initialCoursesState: CoursesStateModel = {
@@ -34,9 +35,10 @@ export const initialCoursesState: CoursesStateModel = {
         topRated: false,
         authors: [
             {
-                id: '999',
+                id: null,
                 name: ''
             }
         ]
-    }
+    },
+    allCoursesDisplayed: false
 };

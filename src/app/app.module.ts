@@ -18,16 +18,20 @@ import { AuthorizationInterceptor } from './features/login/services/authorizatio
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { authReducer } from './features/login/store/auth.reducers';
 import { AuthStoreEffects } from './features/login/store/auth.effects';
+import { coursesReducer } from './features/courses/store/courses.reducers';
+import { CoursesStoreEffects } from './features/courses/store/courses.effects';
 
 
 registerLocaleData(localeUa, 'ru-Ua');
 
 const APP_REDUCERS = {
   auth: authReducer,
+  courses: coursesReducer
 };
 
 const APP_EFFECTS = [
-  AuthStoreEffects
+  AuthStoreEffects,
+  CoursesStoreEffects
 ];
 
 const APP_PROVIDERS = [
