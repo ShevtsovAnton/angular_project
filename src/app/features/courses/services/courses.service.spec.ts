@@ -93,7 +93,7 @@ describe('CoursesService', () => {
   });
 
   it('remove() call http delete with id  ', () => {
-    const courseId = '1';
+    const courseId = 1;
     service.remove(courseId).subscribe((data) => {
         expect(data).toEqual(courseMock);
       });
