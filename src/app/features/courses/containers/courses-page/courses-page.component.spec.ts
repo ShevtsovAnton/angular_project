@@ -14,6 +14,8 @@ import { coursesListMock } from './courses-list.mock';
 import { ConfirmationModalMockComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component.mock';
 import { CoursesService } from '../../services/courses.service';
 import { CoursesItemModel } from '../../models/courses-item.model';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 const courseMock: CoursesItemModel = {
   id: 1,
@@ -22,7 +24,8 @@ const courseMock: CoursesItemModel = {
   duration: 500,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   imagePath: '',
-  topRated: true
+  topRated: true,
+  authors: ''
 };
 
 const coursesServiceStub: Partial<CoursesService> = {
@@ -53,6 +56,9 @@ describe('CoursesPageComponent', () => {
       ],
       providers: [
         { provide: CoursesService, useValue: coursesServiceStub }
+      ],
+      imports: [
+        RouterTestingModule
       ]
     })
     .compileComponents();
@@ -115,5 +121,25 @@ describe('CoursesPageComponent', () => {
     spyOn(component, 'delete');
     component.handleModalResponse(true);
     expect(component.delete).toHaveBeenCalled();
+  });
+
+  it('should not call delete method after cancel is clicked', () => {
+    spyOn(component, 'delete');
+    component.handleModalResponse(false);
+    expect(component.delete).not.toHaveBeenCalled();
+  });
+
+  it('should navigate to courses/new page', () => {
+    const router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    component.addCourse();
+    expect(router.navigate).toHaveBeenCalledWith(['courses', 'new']);
+  });
+
+  it('should navigate to course:id page', () => {
+    const router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    component.edit(courseMock);
+    expect(router.navigate).toHaveBeenCalledWith(['courses', courseMock.id]);
   });
 });

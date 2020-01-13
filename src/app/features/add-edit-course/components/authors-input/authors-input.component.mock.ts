@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-authors-input',
     template: '<p>Mock Authors input Component</p>'
   })
-export class AuthorsInputMockComponent {}
+export class AuthorsInputMockComponent {
+  @Input() authors: string;
+}
 

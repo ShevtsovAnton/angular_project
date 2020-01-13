@@ -1,18 +1,19 @@
 <div class="add-course-page__container">
   <div class="add-course__content">
     <app-header></app-header>
+    <app-breadcrumbs [courseTitle]="course.title"></app-breadcrumbs>
     <div class="add-form__container">
       <label for="title">
           Title:
-          <input type="text" name="title" id="title">
+          <input type="text" name="title" id="title" value="{{course.title}}">
         </label>
         <label for="description">
           Description:
-          <textarea type="text" name="description" id="description" rows="5"></textarea>
+          <textarea type="text" name="description" id="description" rows="5">{{course.description}}</textarea>
         </label>
-        <app-date-input></app-date-input>
-        <app-duration-input></app-duration-input>
-        <app-authors-input></app-authors-input>
+        <app-date-input [creationDate]="course.creationDate"></app-date-input>
+        <app-duration-input [duration]="course.duration"></app-duration-input>
+        <app-authors-input [authors]="course.authors"></app-authors-input>
         <div>
           <button class="add-form__button" (click)="save()">Save</button>
           <button class="add-form__button" (click)="cancel()">Cancel</button>

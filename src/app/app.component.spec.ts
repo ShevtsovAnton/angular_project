@@ -2,7 +2,15 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CoursesPageMockComponent } from './features/courses/containers/courses-page/courses-page.component.mock';
 import { LoginPageMockComponent } from './features/login/containers/login-page/login-page.component.mock';
-import { AddEditCoursePageMockComponent } from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component.mock';
+import {
+  AddEditCoursePageMockComponent
+} from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component.mock';
+import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+
+@Component({selector: 'router-outlet', template: ''})
+class RouterOutletStubComponent { }
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,8 +19,12 @@ describe('AppComponent', () => {
         AppComponent,
         CoursesPageMockComponent,
         LoginPageMockComponent,
-        AddEditCoursePageMockComponent
+        AddEditCoursePageMockComponent,
+        RouterOutletStubComponent
       ],
+      imports: [
+        RouterTestingModule
+      ]
     }).compileComponents();
   }));
 

@@ -22,8 +22,12 @@
 }
 
 .breadcrumbs__text {
-    cursor: pointer;
+    text-decoration: none;
     transition: .2s ease-in;
+
+    &:visited {
+        color: $golden;
+    }
 
     &:hover {
         color: $golden-dark;

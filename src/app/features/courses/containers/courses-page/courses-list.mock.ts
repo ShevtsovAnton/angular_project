@@ -8,7 +8,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 500,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: true
+    topRated: true,
+    authors: ''
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 300,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 3,
@@ -26,7 +28,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 90,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 4,
@@ -35,7 +38,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 54,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 5,
@@ -44,7 +48,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 200,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 6,
@@ -53,7 +58,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 100,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 7,
@@ -62,7 +68,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 333,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 8,
@@ -71,7 +78,8 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 123,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   },
   {
     id: 9,
@@ -80,6 +88,7 @@ export const coursesListMock: CoursesItemModel[] = [
     duration: 950,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   }
 ];

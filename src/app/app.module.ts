@@ -23,7 +23,9 @@ registerLocaleData(localeUa, 'ru-Ua');
     AddCourseModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'ru-Ua' }
+    {
+      provide: LOCALE_ID, useValue: 'ru-Ua',
+    }
   ],
   bootstrap: [AppComponent]
 })

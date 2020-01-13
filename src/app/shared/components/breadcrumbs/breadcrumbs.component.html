@@ -1,8 +1,8 @@
 <ul class="breadcrumbs__list">
   <li class="breadcrumbs__item">
-      <span class="breadcrumbs__text">Home</span>
-    </li>
-  <li class="breadcrumbs__item">
-    <span class="breadcrumbs__text">Courses</span>
+    <a class="breadcrumbs__text" [routerLink]="['/']">Courses</a>
+  </li>
+  <li class="breadcrumbs__item" *ngIf="courseTitle">
+    <span class="breadcrumbs__text">Video Course {{courseTitle}}</span>
   </li>
 </ul>

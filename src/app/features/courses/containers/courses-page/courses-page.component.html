@@ -7,13 +7,15 @@
               <app-search
                 class="search"
                 (makeSearchQuery)="search($event)"></app-search>
-              <app-add-course></app-add-course>
+              <app-add-course
+                (click)="addCourse()">
+              </app-add-course>
           </div>
       </div>
       <app-courses-list
           [coursesList]="coursesList | orderBy"
           (deleteCourse)="openModal($event)"
-          (editCourse)="edit()">
+          (editCourse)="edit($event)">
       </app-courses-list>
       <app-load-more></app-load-more>
       <div *ngIf="!coursesList.length">

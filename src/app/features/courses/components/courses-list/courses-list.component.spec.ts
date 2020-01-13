@@ -12,7 +12,8 @@ const coursesListMock: CoursesItemModel[] = [
     duration: 220,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
-    topRated: false
+    topRated: false,
+    authors: ''
   }
 ];
 

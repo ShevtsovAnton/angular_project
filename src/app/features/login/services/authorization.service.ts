@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/enums/routes.enum';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +11,13 @@ export class AuthorizationService {
 
   isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 
+  constructor(private router: Router) {}
+
   isAuthenticated(): Observable<boolean> {
     return this.isLoggedInSubject.asObservable();
    }
 
   private hasToken(): boolean {
-    console.log(!!localStorage.getItem('loginInfo'));
     return !!localStorage.getItem('loginInfo');
   }
 
@@ -25,12 +29,14 @@ export class AuthorizationService {
     localStorage.setItem('loginInfo', JSON.stringify(loginInfo));
     this.isLoggedInSubject.next(this.hasToken());
     console.log(`You are logged in successfully as ${userLogin}`);
+    this.router.navigate([AppRoutes.Courses]);
   }
 
   logout(): void {
     localStorage.removeItem('loginInfo');
     this.isLoggedInSubject.next(this.hasToken());
     console.log('You are logged out');
+    this.router.navigate([AppRoutes.Login]);
   }
 
   getUserInfo(): string {
