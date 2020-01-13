@@ -9,10 +9,14 @@ import { CoursesItemModel } from '../../models/courses-item.model';
 
 export class CoursesListComponent {
   @Input() coursesList: CoursesItemModel[] = [];
-  @Output() deleteCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
+  @Output() deleteCourse: EventEmitter<number> = new EventEmitter();
+  @Output() editCourse: EventEmitter<CoursesItemModel> = new EventEmitter();
 
-  delete(course: CoursesItemModel): void {
-    this.deleteCourse.emit(course);
-    console.log(`Courses-list Component: course ${course.title} must be deleted`);
+  delete(id: number): void {
+    this.deleteCourse.emit(id);
+  }
+
+  edit(course: CoursesItemModel): void {
+    this.editCourse.emit(course);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CoursesItemModel } from '../../models/courses-item.model';
 
 @Component({
@@ -15,9 +15,11 @@ export class CoursesListMockComponent {
     id: 2,
     title: 'React',
     creationDate: +new Date(2019, 8, 2),
-    duration: '2h 32min',
+    duration: 110,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    imagePath: ''
+    imagePath: '',
+    topRated: false,
+    authors: []
   };
   @Input() coursesList: CoursesItemModel[] = [];
   selectedCourse: CoursesItemModel;

@@ -9,9 +9,11 @@ const coursesListMock: CoursesItemModel[] = [
     id: 8,
     title: 'Express',
     creationDate: +new Date(2019, 4, 4),
-    duration: '3h 34min',
+    duration: 220,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    imagePath: ''
+    imagePath: '',
+    topRated: false,
+    authors: []
   }
 ];
 

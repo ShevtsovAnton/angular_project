@@ -5,8 +5,10 @@ export class CoursesItem implements CoursesItemModel {
         public id = null,
         public title = '',
         public creationDate = null,
-        public duration = '',
+        public duration = null,
         public description = '',
-        public imagePath = ''
+        public imagePath = '',
+        public topRated = false,
+        public authors = []
     ) {}
 }

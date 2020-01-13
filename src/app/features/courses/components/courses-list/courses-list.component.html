@@ -2,6 +2,7 @@
   <app-courses-item 
       *ngFor="let course of coursesList" 
       [course]="course"
-      (deleteCourse)="delete(course)"
+      (deleteCourse)="delete($event)"
+      (editCourse)="edit(course)"
   ></app-courses-item>
 </div>

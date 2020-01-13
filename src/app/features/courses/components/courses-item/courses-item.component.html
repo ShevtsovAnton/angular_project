@@ -1,14 +1,26 @@
-<div class="course">
+<div 
+  class="course"
+  [appHighlightCourse]="course.creationDate">
   <div class="course__image-container">
     <img class="course__image-item" src="{{course.imagePath}}" alt="course image">
   </div>
-  <div class="course__body">
-    <h4 class="course__title">{{course.title}}</h4>
+  <div [ngClass]="{'course__body': true, 'top-rated': course.topRated}" >
+    <h4 class="course__title">
+      {{course.title | uppercase}}
+      <i 
+      *ngIf="course.topRated" 
+      class="fa fa-star"
+      ngClass="fa-star_golden"
+      ></i>
+    </h4>
     <span class="course__description">{{course.description}}</span>
     <span class="course__startdate">Start: {{course.creationDate | date}}</span>
-    <span class="course__duration">{{course.duration }}</span>
+    <span class="course__duration">{{course.duration | minutesToHours}}</span>
     <div class="course__buttons">
-        <button class="course__button course__button_edit">Edit</button>
+        <button class="course__button course__button_edit"
+          (click)="edit()">
+          Edit
+        </button>
         <button class="course__button course__button_delete"
           (click)=delete()>
           Delete

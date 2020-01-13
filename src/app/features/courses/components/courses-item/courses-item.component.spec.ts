@@ -3,21 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesItemComponent } from './courses-item.component';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesListMockComponent } from '../courses-list/courses-list.component.mock';
+import { HighlightCourseDirective } from '../../directives/highlight-course.directive';
+import { MinutesToHoursMockPipe } from '../../../../shared/pipes/minutes-to-hours.pipe.mock';
 
 const courseMock: CoursesItemModel = {
     id: 2,
     title: 'React',
     creationDate: +new Date(2019, 8, 2),
-    duration: '2h 32min',
+    duration: 120,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    imagePath: ''
+    imagePath: '',
+    topRated: false,
+    authors: []
 };
 
 // test as class
-it('raises the deleteCourse event when delete is triggered', () => {
+it('CoursesItemComponent, raises the deleteCourse event when delete is triggered', () => {
   const component = new CoursesItemComponent();
   component.course = courseMock;
-  component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
+  component.deleteCourse.subscribe((id: number) => expect(id).toBe(component.course.id));
   component.delete();
 });
 
@@ -30,7 +34,11 @@ describe('CoursesItemComponent, test using stand-alone testing', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesItemComponent ]
+      declarations: [
+        CoursesItemComponent,
+        HighlightCourseDirective,
+        MinutesToHoursMockPipe
+      ]
     })
     .compileComponents();
   }));
@@ -48,7 +56,7 @@ describe('CoursesItemComponent, test using stand-alone testing', () => {
   });
 
   it('raises the deleteCourse event when clicked', () => {
-    component.deleteCourse.subscribe((selectedCourse: CoursesItemModel) => expect(selectedCourse).toBe(component.course));
+    component.deleteCourse.subscribe((id: number) => expect(id).toBe(component.course.id));
     deleteButton = hostElement.querySelector('.course__button_delete');
     deleteButton.click();
   });
@@ -62,7 +70,12 @@ describe('CoursesItemComponent, test using test-host tests', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesItemComponent, CoursesListMockComponent ]
+      declarations: [
+        CoursesItemComponent,
+        CoursesListMockComponent,
+        HighlightCourseDirective,
+        MinutesToHoursMockPipe
+      ]
     })
     .compileComponents();
   }));
@@ -76,6 +89,6 @@ describe('CoursesItemComponent, test using test-host tests', () => {
   it('raises the deleteCourse event when clicked', () => {
     deleteButton = fixture.nativeElement.querySelector('.course__button_delete');
     deleteButton.click();
-    expect(testHostComponent.selectedCourse).toBe(testHostComponent.course);
+    expect(testHostComponent.selectedCourse.id).toBe(testHostComponent.course.id);
   });
 });

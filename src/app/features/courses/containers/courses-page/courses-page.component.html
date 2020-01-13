@@ -4,15 +4,28 @@
       <div class="tools__container">
           <app-breadcrumbs></app-breadcrumbs>
           <div class="tools">
-              <app-search class="search"></app-search>
-              <app-add-course></app-add-course>
+              <app-search
+                class="search"
+                (makeSearchQuery)="search($event)"></app-search>
+              <app-add-course
+                (click)="addCourse()">
+              </app-add-course>
           </div>
       </div>
       <app-courses-list
-          [coursesList]="coursesList"
-          (deleteCourse)="delete($event)">
+          [coursesList]="courses"
+          (deleteCourse)="openModal($event)"
+          (editCourse)="edit($event)">
       </app-courses-list>
-      <app-load-more></app-load-more>
+      <app-load-more (click)="loadMore()" *ngIf="!allCoursesDisplayed"></app-load-more>
+      <div *ngIf="!courses.length">
+        <span class="courses-page__no-data">{{noDataMessage | uppercase}}</span>
+      </div>
   </div>
   <app-footer class="footer__container"></app-footer>
 </div>
+
+<app-confirmation-modal
+  *ngIf="isModalOpen"
+  (confirmAction)=handleModalResponse($event)
+></app-confirmation-modal>

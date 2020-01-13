@@ -1,14 +1,34 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CoursesPageMockComponent } from './features/courses/containers/courses-page/courses-page.component.mock';
+import { LoginPageMockComponent } from './features/login/containers/login-page/login-page.component.mock';
+import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  AddEditCoursePageMockComponent
+} from './features/add-edit-course/containers/add-edit-course-page/add-edit-course-page.component.mock';
+
+
+// tslint:disable-next-line
+@Component({selector: 'router-outlet', template: ''})
+class RouterOutletStubComponent { }
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        CoursesPageMockComponent
+        CoursesPageMockComponent,
+        LoginPageMockComponent,
+        AddEditCoursePageMockComponent,
+        RouterOutletStubComponent
       ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     }).compileComponents();
   }));
 
@@ -17,11 +37,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it(`should have as title 'courses-ng'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('courses-ng');
-  });
-
 });
