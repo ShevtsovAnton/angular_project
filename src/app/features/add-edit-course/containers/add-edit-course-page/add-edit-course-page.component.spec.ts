@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs/internal/observable/of';
 
 import { AddEditCoursePageComponent } from './add-edit-course-page.component';
 import { HeaderMockComponent } from 'src/app/shared/components/header/header.component.mock';
@@ -7,16 +11,14 @@ import { DurationInputMockComponent } from '../../components/duration-input/dura
 import { AuthorsInputMockComponent } from '../../components/authors-input/authors-input.component.mock';
 import { DateInputMockComponent } from '../../components/date-input/date-input.component.mock';
 import { BreadcrumbsMockComponent } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component.mock';
-import { RouterTestingModule } from '@angular/router/testing';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
-import { Router } from '@angular/router';
 
 const coursesServiceStub: Partial<CoursesService> = {
   createCourse: () => null,
   updateCourse: () => null
 };
 
-describe('AddCoursePageComponent', () => {
+describe('AddEditCoursePageComponent', () => {
   let component: AddEditCoursePageComponent;
   let fixture: ComponentFixture<AddEditCoursePageComponent>;
 
@@ -32,7 +34,8 @@ describe('AddCoursePageComponent', () => {
         BreadcrumbsMockComponent
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       providers: [
         { provide: CoursesService, useValue: coursesServiceStub }
@@ -53,7 +56,7 @@ describe('AddCoursePageComponent', () => {
 
   it('should call createCourse method on service', () => {
     const coursesService = TestBed.get(CoursesService);
-    spyOn(coursesService, 'createCourse');
+    spyOn(coursesService, 'createCourse').and.returnValue(of(null));
     component.isCourseNew = true;
     component.save();
     expect(coursesService.createCourse).toHaveBeenCalled();
@@ -61,7 +64,7 @@ describe('AddCoursePageComponent', () => {
 
   it('should call updateCourse method on service', () => {
     const coursesService = TestBed.get(CoursesService);
-    spyOn(coursesService, 'updateCourse');
+    spyOn(coursesService, 'updateCourse').and.returnValue(of(null));
     component.isCourseNew = false;
     component.save();
     expect(coursesService.updateCourse).toHaveBeenCalled();

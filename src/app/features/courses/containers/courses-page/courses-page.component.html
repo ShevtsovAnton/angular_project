@@ -13,12 +13,12 @@
           </div>
       </div>
       <app-courses-list
-          [coursesList]="coursesList | orderBy"
+          [coursesList]="courses"
           (deleteCourse)="openModal($event)"
           (editCourse)="edit($event)">
       </app-courses-list>
-      <app-load-more></app-load-more>
-      <div *ngIf="!coursesList.length">
+      <app-load-more (click)="loadMore()" *ngIf="!allCoursesDisplayed"></app-load-more>
+      <div *ngIf="!courses.length">
         <span class="courses-page__no-data">{{noDataMessage | uppercase}}</span>
       </div>
   </div>

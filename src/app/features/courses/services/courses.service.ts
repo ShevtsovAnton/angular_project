@@ -1,132 +1,45 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { CoursesItemModel } from '../models/courses-item.model';
+
+const BASE_URL = 'http://localhost:3004';
+const COURSES_PATH = '/courses';
 
 @Injectable()
 export class CoursesService {
 
-  coursesList: CoursesItemModel[] = [
-    {
-      id: 1,
-      title: 'Angular',
-      creationDate: +new Date(2019, 10, 9),
-      duration: 500,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/angular_new.png',
-      topRated: true,
-      authors: ''
-    },
-    {
-      id: 2,
-      title: 'React',
-      creationDate: +new Date(2019, 11, 9),
-      duration: 300,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/reactjs.png',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 3,
-      title: 'Vue',
-      creationDate: +new Date(2019, 7, 24),
-      duration: 90,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/vuejs.jpg',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 4,
-      title: 'Git',
-      creationDate: +new Date(2019, 5, 30),
-      duration: 54,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/git_new.png',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 5,
-      title: 'Javascript',
-      creationDate: +new Date(2019, 1, 18),
-      duration: 200,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/javascript.png',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 6,
-      title: 'Jquery',
-      creationDate: +new Date(2019, 2, 2),
-      duration: 100,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/jquery_new.png',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 7,
-      title: 'Ember.js',
-      creationDate: +new Date(2019, 3, 3),
-      duration: 333,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/ember.jpg',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 8,
-      title: 'Express',
-      creationDate: +new Date(2019, 4, 4),
-      duration: 123,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/express_new.png',
-      topRated: false,
-      authors: ''
-    },
-    {
-      id: 9,
-      title: 'Node.js',
-      creationDate: +new Date(2019, 5, 5),
-      duration: 950,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      imagePath: '../../../../assets/node_new.jpeg',
-      topRated: false,
-      authors: ''
-    }
-  ];
+  constructor(private http: HttpClient) {}
 
-  getList(): CoursesItemModel[] {
-    return this.coursesList;
+  getList(
+    page: number,
+    count: number,
+    textFragment = ''
+  ): Observable<CoursesItemModel[]> {
+    return this.http
+      .get<CoursesItemModel[]>(`${ BASE_URL }${ COURSES_PATH }`, {
+        params: {
+          start: (page * count).toString(),
+          count: count.toString(),
+          textFragment
+        }
+    });
   }
 
-  createCourse(course: CoursesItemModel): void {
-    this.coursesList = [...this.coursesList, course];
+  createCourse(course: CoursesItemModel): Observable<CoursesItemModel> {
+    console.log(course);
+    return this.http.post<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }`, course);
   }
 
-  getCourse(id: number): CoursesItemModel {
-    return this.coursesList.filter(course => course.id === id)[0];
+  getCourse(id: number): Observable<CoursesItemModel> {
+    return this.http.get<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }/${ id }`);
   }
 
-  updateCourse(updatedCourse: CoursesItemModel): void {
-    this.coursesList = this.coursesList.reduce((allCourses, course) => {
-      if (course.id !== updatedCourse.id) {
-        allCourses.push(course);
-      } else {
-        allCourses.push(updatedCourse);
-      }
-      return allCourses;
-    }, []);
-    console.log(this.coursesList);
+  updateCourse(updatedCourse: CoursesItemModel): Observable<CoursesItemModel> {
+    return this.http.patch<CoursesItemModel>(`${ BASE_URL }${ COURSES_PATH }/${updatedCourse.id}`, updatedCourse);
   }
 
-  remove(courseToRemove: CoursesItemModel): void {
-    this.coursesList = this.coursesList.reduce((allCourses, course) => {
-      if (course.id !== courseToRemove.id) {
-        allCourses.push(course);
-      }
-      return allCourses;
-    }, []);
+  remove(id: number): Observable<any> {
+    return this.http.delete(`${ BASE_URL }${ COURSES_PATH }/${ id }`);
   }
 }

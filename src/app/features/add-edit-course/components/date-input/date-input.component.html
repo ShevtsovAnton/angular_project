@@ -1,2 +1,8 @@
-<label for="date">Date:</label>
-<input type="text" name="date" id="date" value="{{creationDate | date: 'dd/MM/yyyy'}}">
+<label for="date">Date(dd/mm/yyyy):</label>
+<input 
+    type="text"
+    name="date"
+    id="date"
+    [ngModel]="creationDate | date: 'dd/MM/yyyy'"
+    (blur)="onCreationDateChange($event)"
+>

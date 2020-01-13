@@ -9,7 +9,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: true,
-    authors: ''
+    authors: []
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 7,
@@ -69,7 +69,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 8,
@@ -79,7 +79,7 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   },
   {
     id: 9,
@@ -89,6 +89,6 @@ export const coursesListMock: CoursesItemModel[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imagePath: '',
     topRated: false,
-    authors: ''
+    authors: []
   }
 ];

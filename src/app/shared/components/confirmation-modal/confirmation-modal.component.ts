@@ -18,7 +18,6 @@ export class ConfirmationModalComponent implements OnDestroy {
 
   handleClick(event: boolean): void {
       this.confirmAction.emit(event);
-      console.log(event);
   }
 
   handleModalWindowClick(event: Event): void {
