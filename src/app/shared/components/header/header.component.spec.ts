@@ -5,7 +5,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HeaderComponent } from './header.component';
 import { LogoMockComponent } from '../logo/logo.component.mock';
 
-
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;

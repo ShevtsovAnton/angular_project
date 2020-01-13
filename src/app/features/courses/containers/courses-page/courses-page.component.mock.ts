@@ -5,4 +5,3 @@ import { Component } from '@angular/core';
     template: '<p>Mock Courses Page Component</p>'
   })
 export class CoursesPageMockComponent {}
-
