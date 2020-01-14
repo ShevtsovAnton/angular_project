@@ -17,15 +17,15 @@ export class SearchComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   ngOnInit() {
-    const searchInputObservable = fromEvent(this.searchInputRef.nativeElement, 'input');
+    const searchInputObservable = fromEvent(this.searchInputRef.nativeElement, 'keyup');
 
     searchInputObservable
       .pipe(
         debounceTime(1000),
-        filter((e: any) => e.target.value.length >= 3),
+        filter((e: KeyboardEvent) => (e.target as HTMLInputElement).value.length >= 3),
         takeUntil(this.destroy$)
       )
-      .subscribe(e => this.search());
+      .subscribe(() => this.search());
   }
 
   search() {
