@@ -17,7 +17,7 @@ const userMock: UserModel = {
     },
     login: null,
     password: null
-}
+};
 
 describe('AuthorizationService', () => {
   let service: AuthorizationService;
@@ -45,7 +45,7 @@ describe('AuthorizationService', () => {
   it('getUserInfo() should call http post', () => {
     service.getUserInfo().subscribe((data) => {
       expect(data).toBe(userMock);
-    })
+    });
     const req = httpMock.expectOne(`${ USER_INFO_PATH }`);
     expect(req.request.method).toEqual('POST');
     req.flush(userMock);

@@ -6,6 +6,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthorizationService } from './features/login/services/authorization.service';
 import { of } from 'rxjs';
 import { AppRoutes } from './shared/enums/routes.enum';
+import { UrlTree } from '@angular/router';
 
 const authorizationServiceStub: Partial<AuthorizationService> = {
   isAuthenticated: () => of(true)
@@ -52,12 +53,11 @@ describe('AuthGuard', () => {
     });
   }));
 
-  it('should return false if isAuthenticated() returns false', inject([AuthGuard], (guard: AuthGuard) => {
+  it('should redirect (createUrlTree) if isAuthenticated() returns false', inject([AuthGuard], (guard: AuthGuard) => {
     const service = TestBed.get(AuthorizationService);
     spyOn(service, 'isAuthenticated').and.returnValue(of(false));
     guard.canActivate(null, null).subscribe( result => {
-      expect(result).not.toBe(true);
+      expect(result).toEqual(jasmine.any(UrlTree));
     });
   }));
-
 });
