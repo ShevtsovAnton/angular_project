@@ -42,11 +42,8 @@ export class CoursesStoreEffects {
   getCoursesList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getCoursesList),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.getList(
-          payload.page,
-          payload.count,
-          payload.textFragment).pipe(
+      mergeMap(({ page, count, textFragment }): Observable<Action> =>
+        this.coursesService.getList(page, count, textFragment).pipe(
             map((list: CoursesItemModel[]) => getCoursesListSuccess({ list })),
             catchError((error) => of(getCoursesListFailure({ error })))
           )
@@ -57,8 +54,8 @@ export class CoursesStoreEffects {
   getCourseRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getCourseRequest),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.getCourse(payload.id)
+      mergeMap(({ id }): Observable<Action> =>
+        this.coursesService.getCourse(id)
           .pipe(
             map((course: CoursesItemModel) => getCourseSuccess({ course })),
             catchError((error) => of(getCourseFailure({ error })))
@@ -70,10 +67,10 @@ export class CoursesStoreEffects {
   removeCourse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(removeCourse),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.remove(payload.id)
+      mergeMap(({ id }): Observable<Action> =>
+        this.coursesService.remove(id)
           .pipe(
-            map(() => removeCourseSuccess({ id: payload.id })),
+            map(() => removeCourseSuccess({ id })),
             catchError((error) => of(removeCourseFailure({ error })))
           )
       )
@@ -83,11 +80,8 @@ export class CoursesStoreEffects {
   loadMoreCourses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadMoreCourses),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.getList(
-          payload.page,
-          payload.count,
-          payload.textFragment).pipe(
+      mergeMap(({ page, count, textFragment }): Observable<Action> =>
+        this.coursesService.getList(page, count, textFragment).pipe(
             map((list: CoursesItemModel[]) => loadMoreCoursesSuccess({ list })),
             catchError((error) => of(getCoursesListFailure({ error })))
           )
@@ -98,11 +92,8 @@ export class CoursesStoreEffects {
   searchCourses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(searchCourses),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.getList(
-          payload.page,
-          payload.count,
-          payload.textFragment).pipe(
+      mergeMap(({ page, count, textFragment }): Observable<Action> =>
+        this.coursesService.getList(page, count, textFragment).pipe(
             map((list: CoursesItemModel[]) => searchCoursesSuccess({ list })),
             catchError((error) => of(searchCoursesFailure({ error })))
           )
@@ -113,10 +104,10 @@ export class CoursesStoreEffects {
   createCourse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createCourse),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.createCourse(payload.course)
+      mergeMap(({ course }): Observable<Action> =>
+        this.coursesService.createCourse(course)
           .pipe(
-            map((course) => createCourseSuccess({ course })),
+            map((courseCreated) => createCourseSuccess({ course: courseCreated })),
             tap(() => this.router.navigate([AppRoutes.Courses])),
             catchError((error) => of(createCourseFailure({ error })))
           )
@@ -127,10 +118,10 @@ export class CoursesStoreEffects {
   updateCourse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateCourse),
-      mergeMap((payload: any): Observable<Action> =>
-        this.coursesService.updateCourse(payload.course)
+      mergeMap(({ course }): Observable<Action> =>
+        this.coursesService.updateCourse(course)
           .pipe(
-            map((course) => updateCourseSuccess({ course })),
+            map((updatedCourse) => updateCourseSuccess({ course: updatedCourse })),
             tap(() => this.router.navigate([AppRoutes.Courses])),
             catchError((error) => of(updateCourseFailure({ error })))
           )

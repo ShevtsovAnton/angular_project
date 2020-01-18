@@ -21,8 +21,8 @@ export class AuthStoreEffects {
   loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginRequest),
-      switchMap((payload: any): Observable<Action> =>
-        this.authorizationService.login(payload.login, payload.password).pipe(
+      switchMap(({ login, password }): Observable<Action> =>
+        this.authorizationService.login(login, password).pipe(
           map((user: UserModel) => loginComplete({ user })),
           catchError((error) => of(loginFailure({ error })))
         )
@@ -41,7 +41,10 @@ export class AuthStoreEffects {
   loginFailure$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginFailure),
-      tap(() => this.router.navigate([AppRoutes.Login]))
+      tap((error) => {
+        console.log(error);
+        return this.router.navigate([AppRoutes.Login]);
+      })
     ),
     { dispatch: false }
   );

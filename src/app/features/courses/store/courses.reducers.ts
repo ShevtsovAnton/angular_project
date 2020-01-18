@@ -22,7 +22,7 @@ const _coursesReducer = createReducer(initialCoursesState,
         ...state,
         list: [...state.list, ...list],
         allCoursesDisplayed
-    })
+    });
 }),
 
     on(getCourseSuccess, (state, { course }) => ({

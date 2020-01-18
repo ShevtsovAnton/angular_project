@@ -4,7 +4,7 @@ import { CoursesItemModel } from '../models/courses-item.model';
 export interface CoursesStateModel {
     list: CoursesItemModel[];
     selectedCourse: CoursesItemModel;
-    allCoursesDisplayed: boolean
+    allCoursesDisplayed: boolean;
 }
 
 export const initialCoursesState: CoursesStateModel = {

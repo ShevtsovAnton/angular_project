@@ -16,11 +16,6 @@ export const getCoursesListFailure = createAction(
     props<{ error: any }>()
 );
 
-// export const createCourse = createAction(
-//     '[Courses List Component] Create course',
-//     props<{ course: CoursesItemModel }>()
-// );
-
 export const getCourseRequest = createAction(
     '[Courses List Component] Get course request',
     props<{ id: number }>()

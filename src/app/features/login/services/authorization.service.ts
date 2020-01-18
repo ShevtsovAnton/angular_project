@@ -23,8 +23,7 @@ export class AuthorizationService {
       flatMap((res: TokenModel): Observable<UserModel> => {
         return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: res.token })
           .pipe(catchError(error => of(error)));
-      }),
-      catchError(error => of(error))
+      })
     );
   }
 }
