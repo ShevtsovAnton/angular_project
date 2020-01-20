@@ -1,8 +1,9 @@
 <label for="duration" class="duration__label">Duration:</label>
-<input  type="number" 
+<input
         name="duration" 
         class="duration__input" 
         id="duration" 
         [(ngModel)]="duration"
-        (ngModelChange)="onDurationChange($event)">
+        (ngModelChange)="writeValue(duration)"
+        (blur)="onBlur()">
 <span class="duration__minutes" *ngIf="duration">{{duration | minutesToHours}}</span>

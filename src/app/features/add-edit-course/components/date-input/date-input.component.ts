@@ -1,18 +1,63 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
+import {
+  AbstractControl,
+  ControlValueAccessor, FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
-  styleUrls: ['./date-input.component.scss']
+  styleUrls: ['./date-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true,
+    }
+  ]
 })
-export class DateInputComponent {
-  @Input() creationDate: number;
-  @Output() creationDateChange: EventEmitter<number> = new EventEmitter<number>();
+export class DateInputComponent implements ControlValueAccessor, Validator {
 
-  onCreationDateChange(event): void {
-    const dateString = event.target.value;
-    const [day, month, year] = dateString.split(/\/|\./);
-    const dateInMs = Date.parse(`${month}/${day}/${year}`);
-    this.creationDateChange.emit(dateInMs);
+  date = '';
+  control: AbstractControl = new FormControl();
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    console.log('valid?', moment(control.value, 'DD/MM/YYYY', true).isValid());
+    this.control = control;
+    return moment(control.value, 'DD/MM/YYYY', true).isValid() ? null : { dateFormat: true };;
+  }
+
+  writeValue(value: string): void {
+    if (value !== this.date) {
+      this.date = value;
+    }
+    this.onChange(value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
+
+  onChange: any = () => {};
+
+  onTouched: any = () => {};
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 }
