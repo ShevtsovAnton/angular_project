@@ -2,18 +2,16 @@
 
     &__wrapper {
       position: relative;
-      margin-top: 30px;
+      margin-top: 10px;
     }
   
     &__el {
       width: 100%;
-      margin-top: 40px;
     }
   
     &__selected {
-      top: 0;
-      left: 0;
-      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
     }
   }
   
@@ -65,6 +63,8 @@
   color: black;
   border-radius: 10px;
   margin-right: 5px;
+  white-space: nowrap;
+  margin-bottom: 5px;
 }
 
 .author__item i {
@@ -73,9 +73,4 @@
 
 .show {
   display: block;
-}
-
-.is-invalid {
-  border-color: red;
-  outline: red;
 }

@@ -33,9 +33,8 @@ export class DateInputComponent implements ControlValueAccessor, Validator {
   control: AbstractControl = new FormControl();
 
   validate(control: AbstractControl): ValidationErrors | null {
-    console.log('valid?', moment(control.value, 'DD/MM/YYYY', true).isValid());
     this.control = control;
-    return moment(control.value, 'DD/MM/YYYY', true).isValid() ? null : { dateFormat: true };;
+    return moment(control.value, 'MM/DD/YYYY', true).isValid() ? null : { dateFormat: true };;
   }
 
   writeValue(value: string): void {

@@ -3,65 +3,76 @@
     <app-header></app-header>
     <app-breadcrumbs courseTitle="title"></app-breadcrumbs>
     <div class="add-form__container">
-      <form [formGroup]="courseForm">
+      <form [formGroup]="courseForm" (submit)="onSubmit(courseForm.value)">
         
         <label for="title">
           Title:
-          <input [formControl]="title" type="text" id="title">
+          <input
+            formControlName="title"
+            id="title"
+            [class.is-invalid]="title.invalid &&title.touched">
         </label>
         <span
           class="error"
-          *ngIf="courseForm.get('title').hasError('required') && courseForm.get('title').touched"
+          *ngIf="title.hasError('required') && title.touched"
         >*required</span>
         <span
           class="error"
-          *ngIf="courseForm.get('title').hasError('maxLength') && courseForm.get('title').touched"
+          *ngIf="title.hasError('maxlength') && title.touched"
         >the maximum length is 50 characters</span>
         
         <label for="description">
           Description:
-          <textarea [formControl]="description" type="text" name="description" id="description" rows="5"></textarea>
+          <textarea formControlName="description"
+            id="description"
+            rows="3"
+            [class.is-invalid]="description.invalid && description.touched">
+          </textarea>
         </label>
         <span
           class="error"
-          *ngIf="courseForm.get('description').hasError('required') && courseForm.get('description').touched"
+          *ngIf="description.hasError('required') && description.touched"
         >*required</span>
         <span
           class="error"
-          *ngIf="courseForm.get('description').hasError('maxLength') && courseForm.get('description').touched"
+          *ngIf="description.hasError('maxlength') && description.touched"
         >the maximum length is 250 characters</span>
         
-        <app-date-input [formControl]="courseForm.get('creationDate')"></app-date-input>
+        <app-date-input formControlName="creationDate"></app-date-input>
         <span
           class="error"
-          *ngIf="courseForm.get('creationDate').hasError('required') && courseForm.get('creationDate').touched"
+          *ngIf="creationDate.hasError('required') && creationDate.touched"
         >*required</span>
         <span
           class="error"
-          *ngIf="courseForm.get('creationDate').hasError('dateFormat') && courseForm.get('creationDate').touched"
-        >the date should be in the format 'dd/mm/yyyy'</span>
+          *ngIf="creationDate.hasError('dateFormat') && creationDate.touched"
+        >the date should be in the format 'mm/dd/yyyy'</span>
         
-        <app-duration-input [formControl]="courseForm.get('duration')"></app-duration-input>
+        <app-duration-input formControlName="duration"></app-duration-input>
         <span
           class="error"
-          *ngIf="courseForm.get('duration').hasError('required') && courseForm.get('duration').touched"
+          *ngIf="duration.hasError('required') && duration.touched"
         >*required</span>
         <span
           class="error"
-          *ngIf="courseForm.get('duration').hasError('onlyNumbers') && courseForm.get('duration').touched"
+          *ngIf="duration.hasError('onlyNumbers') && duration.touched"
         >the duration should contain only numbers allow</span>
         
-        <app-authors-input [authors]="(authors$ | async) || []" [formControl]="courseForm.get('authors')"></app-authors-input>
+        <app-authors-input [authors]="(authors$ | async) || []" formControlName="authors"></app-authors-input>
           <span
           class="error"
-          *ngIf="courseForm.get('authors').hasError('required') && courseForm.get('authors').touched"
+          *ngIf="authors.hasError('required') && authors.touched"
         >*required</span>
         <span
         class="error"
-        *ngIf="courseForm.get('authors').hasError('minAuthorLength') && courseForm.get('authors').touched"
+        *ngIf="authors.hasError('minAuthorLength') && authors.touched"
       >please select at least one author</span>
         <div>
-          <button class="add-form__button" (click)="save()">Save</button>
+          <button
+            class="add-form__button"
+            type="submit"
+            [disabled]="courseForm.invalid"
+            >Save</button>
           <button class="add-form__button" (click)="cancel()">Cancel</button>
         </div>
       </form>

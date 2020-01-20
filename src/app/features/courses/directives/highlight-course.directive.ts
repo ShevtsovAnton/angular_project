@@ -6,7 +6,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 })
 export class HighlightCourseDirective implements OnInit {
 
-  @Input('appHighlightCourse') creationDate: number;
+  @Input('appHighlightCourse') creationDate: string;
   currentDateMs: number = Date.now();
   freshCourseDays = 14;
   freshCourseMs = this.freshCourseDays * 1000 * 60 * 60 * 24;
@@ -18,7 +18,8 @@ export class HighlightCourseDirective implements OnInit {
     this.highlight(this.creationDate);
   }
 
-  private highlight(creationDateMs: number): void {
+  private highlight(creationDate: string): void {
+    const creationDateMs = Date.parse(creationDate);
     if ((creationDateMs < this.currentDateMs) &&
        (creationDateMs >= this.currentDateMs - this.freshCourseMs)) {
       this.el.nativeElement.style.border = '2px solid #00FF00';

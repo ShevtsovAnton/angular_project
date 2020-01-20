@@ -1,5 +1,15 @@
 
 <div class="input__wrapper">
+  <label>Authors:</label>
+    <textarea
+      class="input__el"
+      rows="1"
+      (focus)="toggleDropdown(true)"
+      (blur)="onBlur()"
+      [(ngModel)]="search"
+      [class.is-invalid]="control.invalid && control.touched"
+    ></textarea>
+
     <div class="input__selected">
       <span
         class="author__item"
@@ -12,15 +22,6 @@
         ></i>
       </span>
     </div>
-
-    <textarea
-      class="input__el"
-      rows="1"
-      (focus)="toggleDropdown(true)"
-      (blur)="onBlur()"
-      [(ngModel)]="search"
-      [class.is-invalid]="control.invalid && control.touched"
-    ></textarea>
 </div>
 
   <div class="suggestions__wrapper">

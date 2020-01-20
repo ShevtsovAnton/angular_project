@@ -36,7 +36,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
       id: null,
       title: [null, [
         Validators.required,
-        Validators.maxLength(5)
+        Validators.maxLength(50)
       ]],
       description: [null, [
         Validators.required,
@@ -71,30 +71,42 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
       .subscribe((course: CoursesItemModel) => { 
         this.courseForm.patchValue({
           ...course,
-          creationDate: moment(course.creationDate).format('DD/MM/YYYY')
+          creationDate: moment(course.creationDate).format('MM/DD/YYYY')
         });
       });
   }
 
-  public get title(): AbstractControl {
-    console.log('get title');
-    return this.courseForm.get('title');
-  }
-
-  public get description(): AbstractControl {
-    return this.courseForm.get('description');
-  }
-
-  save(): void {
+  onSubmit(value: CoursesItemModel): void {
+    const updatedCourse = { ...value,  creationDate: moment(value.creationDate).format()};
     if (this.isCourseNew) {
-      this.store.dispatch(createCourse({ course: this.course }));
+      this.store.dispatch(createCourse({ course: updatedCourse }));
     } else {
-      this.store.dispatch(updateCourse( {course: this.course }));
+      this.store.dispatch(updateCourse( {course: updatedCourse }));
     }
   }
 
   cancel(): void {
     this.router.navigate([AppRoutes.Courses]);
+  }
+
+  get title(): AbstractControl {
+    return this.courseForm.get('title');
+  }
+
+  get description(): AbstractControl {
+    return this.courseForm.get('description');
+  }
+
+  get creationDate(): AbstractControl {
+    return this.courseForm.get('creationDate');
+  }
+
+  get duration(): AbstractControl {
+    return this.courseForm.get('duration');
+  }
+
+  get authors(): AbstractControl {
+    return this.courseForm.get('authors');
   }
 
   ngOnDestroy(): void {
