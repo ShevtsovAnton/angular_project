@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
 import { CoursesService } from 'src/app/features/courses/services/courses.service';
-import { takeUntil, flatMap, catchError, filter } from 'rxjs/operators';
-import { Subject, Observable, of } from 'rxjs';
+import { flatMap, catchError, filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 
 @Component({
@@ -26,7 +27,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     }]
   };
   isCourseNew = true;
-  private destroy$ = new Subject();
 
   constructor(
     private router: Router,
@@ -42,7 +42,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
             return this.coursesService.getCourse(params.id);
         }),
         catchError(error => of(error)),
-        takeUntil(this.destroy$)
+        untilDestroyed(this)
       )
       .subscribe(course => {
         this.course = course;
@@ -53,11 +53,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   save(): void {
     if (this.isCourseNew) {
       this.coursesService.createCourse(this.course)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(untilDestroyed(this))
         .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     } else {
       this.coursesService.updateCourse(this.course)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(untilDestroyed(this))
         .subscribe(res => this.router.navigate([AppRoutes.Courses]));
     }
   }
@@ -66,8 +66,5 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     this.router.navigate([AppRoutes.Courses]);
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-    }
+  ngOnDestroy(): void {}
 }

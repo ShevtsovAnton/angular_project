@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
-import { takeUntil, flatMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { CoursesItemModel } from '../../models/courses-item.model';
 import { CoursesService } from '../../services/courses.service';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
@@ -21,7 +22,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   searchQuery = '';
   courses: CoursesItemModel[] = [];
   allCoursesDisplayed = false;
-  private destroy$ = new Subject();
 
   constructor(
     private coursesService: CoursesService,
@@ -30,7 +30,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.coursesService.getList(this.page - 1, this.coursesPerPage)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(untilDestroyed(this))
       .subscribe(coursesList => {
         this.courses = coursesList;
       });
@@ -45,7 +45,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
           }
           return this.coursesService.getList(this.page - 1, this.coursesPerPage);
         }),
-        takeUntil(this.destroy$)
+        untilDestroyed(this)
       )
       .subscribe(courses => {
         this.courses = courses;
@@ -60,7 +60,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
     this.searchQuery = textFragment;
 
     this.coursesService.getList(0, this.coursesPerPage, textFragment)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(untilDestroyed(this))
       .subscribe(coursesInfo => {
         this.courses = coursesInfo;
       });
@@ -89,7 +89,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   loadMore(): void {
     this.page += 1;
     this.coursesService.getList(this.page - 1, this.coursesPerPage)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(untilDestroyed(this))
       .subscribe(courses => {
         this.courses = [...this.courses, ...courses];
         if (courses.length < this.coursesPerPage) {
@@ -98,8 +98,5 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  ngOnDestroy(): void {}
 }
