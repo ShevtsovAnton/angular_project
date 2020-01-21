@@ -23,7 +23,6 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: AppRoutes.Courses, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
