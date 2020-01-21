@@ -60,15 +60,15 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
         filter((params: Params) => params.id !== undefined),
         tap((params: Params) => {
             this.store.dispatch(getCourseRequest({ id: params.id }));
-            this.isCourseNew = false
+            this.isCourseNew = false;
         }),
         switchMap(() => {
-          return this.store.select(store => store.courses.selectedCourse)
+          return this.store.select(store => store.courses.selectedCourse);
         }),
         catchError(error => of(error)),
         takeUntil(this.destroy$)
       )
-      .subscribe((course: CoursesItemModel) => { 
+      .subscribe((course: CoursesItemModel) => {
         this.courseForm.patchValue({
           ...course,
           creationDate: moment(course.creationDate).format('MM/DD/YYYY')

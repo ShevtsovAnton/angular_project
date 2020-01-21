@@ -30,7 +30,7 @@ export class LoginComponent {
 
   onSubmit(event, value: { login: string, password: string}): void {
       event.preventDefault();
-      
+
       this.store.dispatch(loginRequest(value));
   }
 

@@ -34,7 +34,7 @@ export class DurationInputComponent implements ControlValueAccessor, Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     this.control = control;
     const onlyNumbersPattern = /^\d+$/;
-    return !onlyNumbersPattern.test(control.value) ? {onlyNumbers: true} : null;;
+    return !onlyNumbersPattern.test(control.value) ? {onlyNumbers: true} : null;
   }
 
   writeValue(value: string): void {
