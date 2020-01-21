@@ -30,7 +30,7 @@ describe('SearchComponent', () => {
   });
 
   it('should raise  search makeSearchQuery on "enter" key', () => {
-    component.searchQuery = 'test';
+    component.searchInputValue = 'test';
     component.makeSearchQuery.subscribe(inputValue => {
       expect(inputValue).toBe('test');
     });
@@ -39,17 +39,11 @@ describe('SearchComponent', () => {
     searchInput.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter'}));
   });
 
-  it('should clear input field', () => {
-    component.searchQuery = 'test';
-    component.search();
-    expect(component.searchQuery).toBe('');
-  });
-
   it('should not clear input field', () => {
-    component.searchQuery = 'test';
+    component.searchInputValue = 'test';
     debugElement = fixture.debugElement;
     searchInput = debugElement.query(By.css('.search__input')).nativeElement;
     searchInput.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape'}));
-    expect(component.searchQuery).toBe('test');
+    expect(component.searchInputValue).toBe('test');
   });
 });

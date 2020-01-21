@@ -61,13 +61,10 @@ export class AuthorizationService {
     this._token = '';
     this.isLoggedInSubject.next(!!this.token);
     console.log('You are logged out');
-    this.router.navigate(['/login']);
+    this.router.navigate([AppRoutes.Login]);
   }
 
-  getUserInfo(): string {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      return userInfo;
-    }
+  getUserInfo(): Observable<UserModel> {
+    return this.http.post<UserModel>(`${USER_INFO_PATH}`, { token: this._token });
   }
 }
