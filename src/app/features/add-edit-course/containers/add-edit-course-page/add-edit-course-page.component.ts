@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
-import { takeUntil, catchError, filter, tap } from 'rxjs/operators';
-import { Subject, of } from 'rxjs';
+import { catchError, filter, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 import { AppState } from 'src/app/core/store/app-store.model';
-import { Store } from '@ngrx/store';
 import { getCourseRequest, createCourse, updateCourse } from 'src/app/features/courses/store/courses.actions';
 
 @Component({
@@ -16,7 +18,6 @@ import { getCourseRequest, createCourse, updateCourse } from 'src/app/features/c
 export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   course: CoursesItemModel;
   isCourseNew = true;
-  private destroy$ = new Subject();
 
   constructor(
     private router: Router,
@@ -32,11 +33,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
             this.store.dispatch(getCourseRequest({ id: params.id }));
         }),
         catchError(error => of(error)),
-        takeUntil(this.destroy$)
+        untilDestroyed(this)
       )
       .subscribe(() => this.isCourseNew = false);
     this.store.select(store => store.courses.selectedCourse)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(untilDestroyed(this))
         .subscribe((course: CoursesItemModel) => this.course = course);
   }
 
@@ -52,8 +53,5 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     this.router.navigate([AppRoutes.Courses]);
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-    }
+  ngOnDestroy(): void {}
 }
