@@ -1,8 +1,8 @@
-<label for="date">Date(dd/mm/yyyy):</label>
+<label for="date">Date(mm/dd/yyyy):</label>
 <input 
-    type="text"
-    name="date"
     id="date"
-    [ngModel]="creationDate | date: 'dd/MM/yyyy'"
-    (blur)="onCreationDateChange($event)"
+    [(ngModel)]="date"
+    (ngModelChange)="writeValue(date)"
+    (blur)="onBlur()"
+    [class.is-invalid]="control.invalid && control.touched"
 >

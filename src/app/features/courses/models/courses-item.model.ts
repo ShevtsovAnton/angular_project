@@ -3,7 +3,7 @@ import { AuthorModel } from './author.model';
 export interface CoursesItemModel {
     id: number;
     title: string;
-    creationDate: number;
+    creationDate: string;
     duration: number;
     description: string;
     imagePath: string;

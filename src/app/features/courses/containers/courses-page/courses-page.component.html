@@ -13,12 +13,12 @@
           </div>
       </div>
       <app-courses-list
-          [coursesList]="courses"
+          [coursesList]="list$ | async"
           (deleteCourse)="openModal($event)"
           (editCourse)="edit($event)">
       </app-courses-list>
-      <app-load-more (click)="loadMore()" *ngIf="!allCoursesDisplayed"></app-load-more>
-      <div *ngIf="!courses.length">
+      <app-load-more (click)="loadMore()" *ngIf="!(allCoursesDisplayed$ | async)"></app-load-more>
+      <div *ngIf="!(list$ | async).length">
         <span class="courses-page__no-data">{{noDataMessage | uppercase}}</span>
       </div>
   </div>

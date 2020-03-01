@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
-import { CoursesService } from 'src/app/features/courses/services/courses.service';
-import { flatMap, catchError, filter } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { catchError, filter, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
+import { AppState } from 'src/app/core/store/app-store.model';
+import { getCourseRequest, createCourse, updateCourse } from 'src/app/features/courses/store/courses.actions';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AuthorsService } from 'src/app/features/courses/services/authors.service';
 
 @Component({
   selector: 'app-add-edit-course-page',
@@ -13,57 +17,92 @@ import { AppRoutes } from 'src/app/shared/enums/routes.enum';
   styleUrls: ['./add-edit-course-page.component.scss']
 })
 export class AddEditCoursePageComponent implements OnInit, OnDestroy {
-  course: CoursesItemModel = {
-    id: null,
-    title: null,
-    creationDate: null,
-    duration: null,
-    description: null,
-    imagePath: '../../../../assets/default.jpeg',
-    topRated: false,
-    authors: [{
-      id: '999',
-      name: ''
-    }]
-  };
+  courseForm: FormGroup;
+  course: CoursesItemModel;
+  selectedCourse: CoursesItemModel;
   isCourseNew = true;
+  authors$ = this.authorsService.getAuthors();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private coursesService: CoursesService
-  ) {}
+    private store: Store<AppState>,
+    private fb: FormBuilder,
+    private authorsService: AuthorsService
+  ) {
+    this.courseForm = this.fb.group({
+      id: null,
+      title: [null, [
+        Validators.required,
+        Validators.maxLength(50)
+      ]],
+      description: [null, [
+        Validators.required,
+        Validators.maxLength(500)
+      ]],
+      creationDate: [null, [
+        Validators.required
+      ]],
+      duration: [null, [
+        Validators.required
+      ]],
+      authors: [[], [
+        Validators.required
+      ]]
+    });
+  }
 
   ngOnInit(): void {
     this.route.params
       .pipe(
         filter((params: Params) => params.id !== undefined),
-        flatMap((params: Params): Observable<CoursesItemModel> => {
-            return this.coursesService.getCourse(params.id);
+        tap((params: Params) => {
+            this.store.dispatch(getCourseRequest({ id: params.id }));
+            this.isCourseNew = false;
+        }),
+        switchMap(() => {
+          return this.store.select(store => store.courses.selectedCourse);
         }),
         catchError(error => of(error)),
         untilDestroyed(this)
       )
-      .subscribe(course => {
-        this.course = course;
-        this.isCourseNew = false;
-      });
+      .subscribe(() => this.isCourseNew = false);
+    this.store.select(store => store.courses.selectedCourse)
+        .pipe(untilDestroyed(this))
+        .subscribe((course: CoursesItemModel) => this.course = course);
   }
 
-  save(): void {
+  onSubmit(value: CoursesItemModel): void {
+    const updatedCourse = { ...value,  creationDate: moment(value.creationDate).format()};
     if (this.isCourseNew) {
-      this.coursesService.createCourse(this.course)
-        .pipe(untilDestroyed(this))
-        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
+      this.store.dispatch(createCourse({ course: updatedCourse }));
     } else {
-      this.coursesService.updateCourse(this.course)
-        .pipe(untilDestroyed(this))
-        .subscribe(res => this.router.navigate([AppRoutes.Courses]));
+      this.store.dispatch(updateCourse( {course: updatedCourse }));
     }
   }
 
   cancel(): void {
     this.router.navigate([AppRoutes.Courses]);
+  }
+
+  get title(): AbstractControl {
+    return this.courseForm.get('title');
+  }
+
+  get description(): AbstractControl {
+    return this.courseForm.get('description');
+  }
+
+  get creationDate(): AbstractControl {
+    return this.courseForm.get('creationDate');
+  }
+
+  get duration(): AbstractControl {
+    return this.courseForm.get('duration');
+  }
+
+  get authors(): AbstractControl {
+    return this.courseForm.get('authors');
   }
 
   ngOnDestroy(): void {}

@@ -49,6 +49,10 @@
         &:hover {
             background-color:$golden-dark;
         }
+
+        &[disabled] {
+            background-color: grey;
+        }
     }
 }
 
@@ -57,5 +61,11 @@
     width: 100%;
     outline: none;
     padding: 5px;
+}
+
+.error {
+    font-size: 0.8rem;
+    color: red;
+    display: block;
 }
     

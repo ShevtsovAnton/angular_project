@@ -41,4 +41,9 @@
             background-color: $golden-dark;
         }
     }
+
+    &__field {
+        width: 80%;
+        margin-bottom: 10px;
+    }
 }

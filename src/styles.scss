@@ -22,3 +22,8 @@ background-color: $black-steel;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.is-invalid {
+  border-color: red;
+  outline: red;
+}

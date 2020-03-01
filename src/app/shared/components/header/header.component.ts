@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthorizationService } from 'src/app/features/login/services/authorization.service';
 import { UserModel } from 'src/app/features/login/models/user.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store/app-store.model';
+import { logout } from 'src/app/features/login/store/auth.actions';
 
 
 @Component({
@@ -10,18 +12,19 @@ import { UserModel } from 'src/app/features/login/models/user.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  userInfo$: Observable<UserModel>;
-  isAuthenticated$: Observable<boolean>;
-  userInfo = '';
 
-  constructor(private authService: AuthorizationService) {}
+  isAuthenticated$: Observable<boolean>;
+  userInfo$: Observable<UserModel>;
+
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.isAuthenticated$ = this.authService.isAuthenticated();
-    this.userInfo$ = this.authService.getUserInfo();
+    this.isAuthenticated$ = this.store.select(store => store.auth.isAuthenticated);
+    this.userInfo$ = this.store.select(store => store.auth.user);
   }
 
   logout(): void {
-    this.authService.logout();
+    this.store.dispatch(logout());
   }
 }
