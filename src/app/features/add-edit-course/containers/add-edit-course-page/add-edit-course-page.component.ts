@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.model';
-import { takeUntil, catchError, filter, tap, switchMap } from 'rxjs/operators';
-import { Subject, of } from 'rxjs';
+import { catchError, filter, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 import { AppState } from 'src/app/core/store/app-store.model';
-import { Store } from '@ngrx/store';
-import * as moment from 'moment';
 import { getCourseRequest, createCourse, updateCourse } from 'src/app/features/courses/store/courses.actions';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AuthorsService } from 'src/app/features/courses/services/authors.service';
@@ -21,7 +22,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   course: CoursesItemModel;
   selectedCourse: CoursesItemModel;
   isCourseNew = true;
-  private destroy$ = new Subject();
 
   authors$ = this.authorsService.getAuthors();
 
@@ -66,14 +66,12 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
           return this.store.select(store => store.courses.selectedCourse);
         }),
         catchError(error => of(error)),
-        takeUntil(this.destroy$)
+        untilDestroyed(this)
       )
-      .subscribe((course: CoursesItemModel) => {
-        this.courseForm.patchValue({
-          ...course,
-          creationDate: moment(course.creationDate).format('MM/DD/YYYY')
-        });
-      });
+      .subscribe(() => this.isCourseNew = false);
+    this.store.select(store => store.courses.selectedCourse)
+        .pipe(untilDestroyed(this))
+        .subscribe((course: CoursesItemModel) => this.course = course);
   }
 
   onSubmit(value: CoursesItemModel): void {
@@ -109,8 +107,5 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     return this.courseForm.get('authors');
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-    }
+  ngOnDestroy(): void {}
 }
