@@ -24,6 +24,7 @@ export class AuthStoreEffects {
       switchMap(({ login, password }): Observable<Action> =>
         this.authorizationService.login(login, password).pipe(
           map((user: UserModel) => loginComplete({ user })),
+
           catchError((error) => of(loginFailure({ error })))
         )
       )

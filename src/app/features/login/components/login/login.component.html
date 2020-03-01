@@ -1,16 +1,41 @@
 <div class="login__container">
   <h2 class="login__header">Login</h2>
-  <form (submit)="onSubmit(username, password)" class="login__form">
+  <form
+    (submit)="onSubmit($event, loginForm.value)"
+    class="login__form"
+    [formGroup]="loginForm"
+  >
     <div class="login__input-container">
-      <label for="username">Username</label>
-      <input type="text" class="login__input" value="flastname" #username required />
+      <mat-form-field appearance="outline" class="login__field">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Username"
+          [formControl]="login">
+        <mat-error *ngIf="login.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
     <div class="login__input-container">
-      <label for="password">Password</label>
-      <input type="password" class="login__input" value="flastname" #password required />
+      <mat-form-field appearance="outline" class="login__field">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          [formControl]="password">
+        <mat-error *ngIf="password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
     <div>
-      <button type="submit" class="login__button">
+      <button
+        type="submit"
+        class="login__button"
+        [disabled]="loginForm.invalid"
+        >
         Login
       </button>
     </div>
