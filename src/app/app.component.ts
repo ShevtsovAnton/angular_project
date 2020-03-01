@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AuthorizationService } from './features/login/services/authorization.service';
 
 @Component({
   selector: 'app-root',

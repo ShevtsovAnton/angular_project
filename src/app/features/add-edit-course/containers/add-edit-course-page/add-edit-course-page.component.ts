@@ -4,7 +4,6 @@ import { CoursesItemModel } from 'src/app/features/courses/models/courses-item.m
 import { catchError, filter, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AppRoutes } from 'src/app/shared/enums/routes.enum';
 import { AppState } from 'src/app/core/store/app-store.model';
@@ -22,7 +21,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   course: CoursesItemModel;
   selectedCourse: CoursesItemModel;
   isCourseNew = true;
-
   authors$ = this.authorsService.getAuthors();
 
   constructor(
